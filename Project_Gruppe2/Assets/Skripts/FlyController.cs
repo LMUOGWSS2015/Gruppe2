@@ -17,13 +17,13 @@ public class FlyController : MonoBehaviour {
 			transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 		}
 		if (Input.GetKey (KeyCode.RightArrow)) {
-			transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
+			transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
 		} 
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			transform.Translate(Vector3.back * movementSpeed * Time.deltaTime);
 		}
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			transform.Translate(Vector3.left * movementSpeed * Time.deltaTime);
+			transform.Translate(Vector3.right * movementSpeed * Time.deltaTime);
 		} 
 		if (Input.GetKey (KeyCode.W)) {
 			transform.Translate(Vector3.up * movementSpeed * Time.deltaTime);
