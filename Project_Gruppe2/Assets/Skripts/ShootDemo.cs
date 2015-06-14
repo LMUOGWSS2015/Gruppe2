@@ -25,7 +25,18 @@ public class ShootDemo : MonoBehaviour {
 				as Rigidbody;
 			
 			instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(speed, 0, 0));
+
+			Debug.Log ("Fired!");
 			
 		}
 	}
+
+	void OnCollisionEnter (Collision col)
+	{
+		if(col.gameObject.tag == "Target")
+		{
+			Destroy(col.gameObject);
+		}
+	}
+
 }
