@@ -6,6 +6,7 @@ public class ShootDemo : MonoBehaviour {
 	public float speed = 100;
 	public AudioClip fireSound;
 	public Transform Effect;
+	public GameObject bulletHole;
 
 
 	private AudioSource fireSource;
@@ -39,6 +40,7 @@ public class ShootDemo : MonoBehaviour {
 					//Debug.DrawLine (new Vector3(5,5,5), new Vector3(0,0,0));
 					Debug.Log (hit.point);
 
+					Instantiate(bulletHole, hit.point, Quaternion.FromToRotation(Vector3.up, hit.normal));
 					GameObject particleClone = new GameObject();
 					particleClone = Instantiate(Effect, hit.point, Quaternion.LookRotation(hit.normal)) as GameObject;
 					Destroy(particleClone, 2);
