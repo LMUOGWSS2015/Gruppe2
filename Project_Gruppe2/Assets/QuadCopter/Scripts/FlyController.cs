@@ -40,10 +40,10 @@ public class FlyController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.Q)) {
 //			transform.RotateAround(transform.position, Transform(Vector3.up), Time.deltaTime * 90f);
 //			transform.Rotate(Vector3.zero * movementSpeed * Time.deltaTime*5);
-			transform.Rotate(0, 0, -10, Space.Self);
+			transform.Rotate(0, 0, -1, Space.Self);
 		}
 		if (Input.GetKey (KeyCode.E)) {
-			transform.Rotate(0, 0, 10, Space.Self);
+			transform.Rotate(0, 0, 1, Space.Self);
 		}
 
 		
