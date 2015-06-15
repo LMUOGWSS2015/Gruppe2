@@ -25,11 +25,11 @@ public class ShootDemo : MonoBehaviour {
 
 			Rigidbody instantiatedProjectile = Instantiate(projectile, transform.position, transform.rotation) as Rigidbody;
 			
-			instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(speed, 0, 0));
+			instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, speed));
 
 			RaycastHit hit;
 			
-			Ray ray = new Ray(transform.position, Vector3.forward);
+			Ray ray = new Ray(transform.position, transform.forward);
 
 			
 				if(Physics.Raycast(ray,out hit,100))
