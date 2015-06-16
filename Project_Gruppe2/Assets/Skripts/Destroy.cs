@@ -22,7 +22,7 @@ public class Destroy : MonoBehaviour {
 		if(col.gameObject.tag == "bullet")
 		{	
 			// play hit sound when cube is hitted by bullet
-			hitSource.PlayOneShot(hitSound, 2);
+			//hitSource.PlayOneShot(hitSound, 2);
 
 			//first destroy the bullet
 			Destroy(col.gameObject);
