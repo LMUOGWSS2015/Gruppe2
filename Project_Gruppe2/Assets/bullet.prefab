@@ -12,7 +12,6 @@ GameObject:
   - 135: {fileID: 13596284}
   - 23: {fileID: 2305094}
   - 54: {fileID: 5480646}
-  - 114: {fileID: 11486224}
   m_Layer: 0
   m_Name: bullet
   m_TagString: cube
@@ -78,17 +77,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11486224
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 165700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94f42df05ddd641c4a7bdea1418e9f26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &13596284
 SphereCollider:
   m_ObjectHideFlags: 1
