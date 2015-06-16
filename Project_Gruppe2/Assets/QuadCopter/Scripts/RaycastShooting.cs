@@ -8,7 +8,7 @@ public class RaycastShooting : MonoBehaviour {
 	public Transform Effect;
 	public GameObject bulletHole;
 
-	private int theDamage = 100;
+	private int theDamage = 20;
 	private AudioSource fireSource;
 	
 	// Use this for initialization
