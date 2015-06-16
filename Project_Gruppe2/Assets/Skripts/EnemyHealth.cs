@@ -24,7 +24,6 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	void ApplyDamage(int theDamage){
-		Debug.Log("The Damage: " + theDamage);
 		health -= theDamage;	
 	}
 }

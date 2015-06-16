@@ -47,8 +47,6 @@ public class LightControll : MonoBehaviour {
 	
 
 	public IEnumerator ColorChange() {
-		Debug.Log("f() started");
-
 		for (float f = 1f; f >= 0; f -= 0.05f) {
 				propRR.color = Color.Lerp(Color.red, propRR.color, f);
 				propRL.color = Color.Lerp(Color.red, propRL.color, f);
@@ -65,8 +63,6 @@ public class LightControll : MonoBehaviour {
 
 			}
 			yield return f;
-			Debug.Log("f() finished");
-
 		}
 	}
 

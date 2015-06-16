@@ -39,9 +39,12 @@ public class RaycastShooting : MonoBehaviour {
 
 			if(Physics.Raycast(ray,out hit,100))
 				{	//bullet hole
-				    Instantiate(bulletHole, hit.point, Quaternion.LookRotation(Vector3.up, hit.normal));
+					bulletHole = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(Vector3.up, hit.normal)) as GameObject;
+					
 					float rand = Random.Range (0.01f,0.02f);
 					bulletHole.transform.localScale = new Vector3(rand,rand,rand);
+
+					bulletHole.transform.parent = GameObject.Find ("Enemy").transform;
 					//particle filter effect
 					GameObject particleClone = Instantiate(Effect, hit.point, Quaternion.LookRotation(hit.normal)) as GameObject;
 					hit.transform.SendMessage("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
