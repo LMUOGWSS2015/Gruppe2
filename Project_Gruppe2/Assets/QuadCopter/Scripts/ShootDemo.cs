@@ -21,6 +21,10 @@ public class ShootDemo : MonoBehaviour {
 		
 		if (Input.GetButtonDown("Fire1"))
 		{	
+			GameObject go = GameObject.Find("QuadCopter");
+			LightControll other = (LightControll) go.GetComponent(typeof(LightControll));
+			other.shootLight();
+
 			// play fire sound when fire button is pressed
 			fireSource.PlayOneShot(fireSound, 1);
 
