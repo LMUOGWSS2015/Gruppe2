@@ -32,7 +32,9 @@ public class ShootDemo : MonoBehaviour {
 			Ray ray = new Ray(transform.position, transform.forward);
 				if(Physics.Raycast(ray,out hit,100))
 				{		
-					Instantiate(bulletHole, hit.point, Quaternion.LookRotation(Vector3.up, hit.normal));
+				    Instantiate(bulletHole, hit.point, Quaternion.LookRotation(Vector3.up, hit.normal));
+					float rand = Random.Range (0.01f,0.02f);
+					bulletHole.transform.localScale = new Vector3(rand,rand,rand);
 					GameObject particleClone = Instantiate(Effect, hit.point, Quaternion.LookRotation(hit.normal)) as GameObject;
 					Destroy(particleClone, 2);
 				}
