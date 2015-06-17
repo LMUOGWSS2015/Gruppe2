@@ -10,10 +10,12 @@ public class RaycastShooting : MonoBehaviour {
 
 	private int theDamage = 20;
 	private AudioSource fireSource;
+	private Texture crosshairTexture;
 	
 	// Use this for initialization
 	void Start () {
 		fireSource = GetComponent<AudioSource>();
+		crosshairTexture = Resources.Load("crosshair") as Texture;	
 	}
 	
 	// Update is called once per frame
@@ -21,6 +23,12 @@ public class RaycastShooting : MonoBehaviour {
 		
 		if (Input.GetButtonDown("Fire1"))
 		{	
+			float crosshairSize = Screen.width * 0.1f;
+			Rect crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+//			GUI.DrawTexture (crosshairRect, crosshairTexture);
+
+
+
 			GameObject go = GameObject.Find("QuadCopter");
 			LightControll other = (LightControll) go.GetComponent(typeof(LightControll));
 			other.shootLight();
