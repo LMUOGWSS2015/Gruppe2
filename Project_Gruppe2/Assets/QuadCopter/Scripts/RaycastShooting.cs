@@ -7,28 +7,39 @@ public class RaycastShooting : MonoBehaviour {
 	public AudioClip fireSound;
 	public Transform Effect;
 	public GameObject bulletHole;
+	public GameObject crosshair;
 
 	private int theDamage = 20;
 	private AudioSource fireSource;
-	private Texture crosshairTexture;
 	
 	// Use this for initialization
 	void Start () {
 		fireSource = GetComponent<AudioSource>();
-		crosshairTexture = Resources.Load("crosshair") as Texture;	
+		crosshair = Instantiate(crosshair, new Vector3(0,0,0), Quaternion.LookRotation(Vector3.up, new Vector3(0,0,0))) as GameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		// show particle filter effect + show bullet hole
+		RaycastHit hit;
+		Ray ray = new Ray(transform.position, transform.forward);
+
+		if (Physics.Raycast (ray, out hit, 20)) {	
+			Debug.Log ("#1" + hit.point);
+			crosshair.transform.position = hit.point;
+			crosshair.transform.rotation = Quaternion.LookRotation (Vector3.up, GameObject.Find ("Gun").transform.normal);
+//			float crosshairSize = Screen.width * 0.1f;
+//			Rect crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+//			GUI.DrawTexture (crosshairRect, crosshairTexture);
+		} else {
+			Debug.Log ("endpoint reached!");
+			Vector3 endpoint = ray.origin + (ray.direction * 20);
+			crosshair.transform.position = endpoint;
+			crosshair.transform.rotation = Quaternion.LookRotation (Vector3.up, transform.forward);
+		}
+
 		if (Input.GetButtonDown("Fire1"))
 		{	
-			float crosshairSize = Screen.width * 0.1f;
-			Rect crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
-//			GUI.DrawTexture (crosshairRect, crosshairTexture);
-
-
-
 			GameObject go = GameObject.Find("QuadCopter");
 			LightControll other = (LightControll) go.GetComponent(typeof(LightControll));
 			other.shootLight();
@@ -41,18 +52,15 @@ public class RaycastShooting : MonoBehaviour {
 			instantiatedProjectile.velocity = transform.TransformDirection(new Vector3(0, 0, projectileSpeed));
 			Destroy(instantiatedProjectile.gameObject, 3); 
 
-			// show particle filter effect + show bullet hole
-			RaycastHit hit;
-			Ray ray = new Ray(transform.position, transform.forward);
-
 			if(Physics.Raycast(ray,out hit,100))
-				{	//bullet hole
+				{	
+					//bullet hole
 					bulletHole = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(Vector3.up, hit.normal)) as GameObject;
 					
 					float rand = Random.Range (0.01f,0.02f);
 					bulletHole.transform.localScale = new Vector3(rand,rand,rand);
-
 					bulletHole.transform.parent = GameObject.Find ("Enemy").transform;
+
 					//particle filter effect
 					GameObject particleClone = Instantiate(Effect, hit.point, Quaternion.LookRotation(hit.normal)) as GameObject;
 					hit.transform.SendMessage("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
