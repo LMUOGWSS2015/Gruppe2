@@ -27,7 +27,7 @@ public class RaycastShooting : MonoBehaviour {
 		if (Physics.Raycast (ray, out hit, 20)) {	
 			Debug.Log ("#1" + hit.point);
 			crosshair.transform.position = hit.point;
-			crosshair.transform.rotation = Quaternion.LookRotation (Vector3.up, GameObject.Find ("Gun").transform.normal);
+			crosshair.transform.rotation = Quaternion.LookRotation (Vector3.up, hit.normal);
 //			float crosshairSize = Screen.width * 0.1f;
 //			Rect crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
 //			GUI.DrawTexture (crosshairRect, crosshairTexture);
@@ -35,7 +35,6 @@ public class RaycastShooting : MonoBehaviour {
 			Debug.Log ("endpoint reached!");
 			Vector3 endpoint = ray.origin + (ray.direction * 20);
 			crosshair.transform.position = endpoint;
-			crosshair.transform.rotation = Quaternion.LookRotation (Vector3.up, transform.forward);
 		}
 
 		if (Input.GetButtonDown("Fire1"))

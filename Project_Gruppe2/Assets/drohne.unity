@@ -857,7 +857,7 @@ MonoBehaviour:
   fireSound: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
   Effect: {fileID: 449196, guid: 4d6c9138ce95c4cdaa700b792019012f, type: 2}
   bulletHole: {fileID: 115182, guid: c0def1ae83d704fe799e1e5a9c9d7b16, type: 2}
-  crosshair: {fileID: 184246, guid: 5e1d4eaa928fc4af6a6331ac9da4ce87, type: 2}
+  crosshair: {fileID: 0}
 --- !u!82 &1086577742
 AudioSource:
   m_ObjectHideFlags: 0
