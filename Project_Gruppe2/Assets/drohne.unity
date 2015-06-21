@@ -541,8 +541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd19fc38cf3424b1a9ef3c0366e22b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rotorSound: {fileID: 0}
 --- !u!114 &634504431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -687,8 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd19fc38cf3424b1a9ef3c0366e22b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rotorSound: {fileID: 0}
 --- !u!114 &982822928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,11 +715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b97f482ce5be476cbd9e941873a7d9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshairTexture: {fileID: 0}
-  cursorWidth: 32
-  cursorHeight: 32
-  myTransform: {fileID: 0}
-  myCamera: {fileID: 0}
 --- !u!114 &999794829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,7 +848,7 @@ MonoBehaviour:
   fireSound: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
   Effect: {fileID: 449196, guid: 4d6c9138ce95c4cdaa700b792019012f, type: 2}
   bulletHole: {fileID: 115182, guid: c0def1ae83d704fe799e1e5a9c9d7b16, type: 2}
-  crosshair: {fileID: 0}
+  crosshair: {fileID: 184246, guid: 5e1d4eaa928fc4af6a6331ac9da4ce87, type: 2}
 --- !u!82 &1086577742
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1240,8 +1231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd19fc38cf3424b1a9ef3c0366e22b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rotorSound: {fileID: 0}
 --- !u!114 &1945977098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1386,8 +1375,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd19fc38cf3424b1a9ef3c0366e22b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rotorSound: {fileID: 0}
 --- !u!114 &1950544608
 MonoBehaviour:
   m_ObjectHideFlags: 0
