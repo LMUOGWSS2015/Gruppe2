@@ -46,9 +46,9 @@ public class RaycastShooting : MonoBehaviour
 			fireSource.PlayOneShot (fireSound, 1);
 
 			// show bullet
-			Rigidbody instantiatedProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
-			instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, projectileSpeed));
-			Destroy (instantiatedProjectile.gameObject, 3); 
+			//Rigidbody instantiatedProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
+			//instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, projectileSpeed));
+			//Destroy (instantiatedProjectile.gameObject, 3); 
 
 			if (Physics.Raycast (ray, out hit, 100)) {	
 				//bullet hole
