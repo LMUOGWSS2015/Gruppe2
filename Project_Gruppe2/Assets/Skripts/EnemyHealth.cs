@@ -5,11 +5,15 @@ public class EnemyHealth : MonoBehaviour {
 
 	public int health = 100;
 
+	private int hits = 0;
+	private HUD hud;
+
 	// Use this for initialization
 	void Start () {
 		if (health <= 0) {
 			Dead ();
 		}
+		hud = new HUD ();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +28,10 @@ public class EnemyHealth : MonoBehaviour {
 	}
 
 	void ApplyDamage(int theDamage){
-		health -= theDamage;	
+		hits += 1;
+		health -= theDamage;
+
+		hud.drawHits (hits);
 	}
+
 }
