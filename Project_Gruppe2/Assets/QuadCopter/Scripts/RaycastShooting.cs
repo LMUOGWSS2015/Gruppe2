@@ -10,6 +10,8 @@ public class RaycastShooting : MonoBehaviour
 	public GameObject Effect;
 	public GameObject bulletHole;
 	public GameObject explosion;
+	public GameObject Fire;
+
 	private int theDamage = 20;
 	private AudioSource fireSource;
 	Rect crosshairRect;
@@ -61,6 +63,9 @@ public class RaycastShooting : MonoBehaviour
 
 				GameObject explosionClone = Instantiate (explosion, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
 				Destroy (explosionClone, 5);
+
+				GameObject fireClone = Instantiate (Fire, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
+				Destroy (fireClone, 5);
 
 				if(hit.transform.tag == "cube"){
 					Debug.Log (hit.transform.tag);
