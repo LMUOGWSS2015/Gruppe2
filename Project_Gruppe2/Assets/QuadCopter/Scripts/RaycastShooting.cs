@@ -9,10 +9,12 @@ public class RaycastShooting : MonoBehaviour
 	public AudioClip fireSound;
 	public GameObject Effect;
 	public GameObject bulletHole;
+	public GameObject explosion;
 	private int theDamage = 20;
 	private AudioSource fireSource;
 	Rect crosshairRect;
 	Texture crosshairTexture;
+
 
 	void OnGUI ()
 	{
@@ -56,6 +58,9 @@ public class RaycastShooting : MonoBehaviour
 					
 				float rand = Random.Range (0.01f, 0.02f);
 				bulletHoleClone.transform.localScale = new Vector3 (rand, rand, rand);
+
+				GameObject explosionClone = Instantiate (explosion, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
+				Destroy (explosionClone, 5);
 
 				if(hit.transform.tag == "cube"){
 					Debug.Log (hit.transform.tag);
