@@ -2292,7 +2292,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 605837555}
-  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381676, w: .875426054}
+  m_LocalRotation: {x: .408217967, y: -.234569743, z: .109381683, w: .875426114}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -4922,10 +4922,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drone: {fileID: 1531918438}
-  movementSpeed: 10
-  rotationSpeed: .0500000007
-  target: 270
-  speed: 45
+  movementSpeed: .5
+  rotationSpeed: 1
   controllerSensitivity: .5
 --- !u!54 &1060703977
 Rigidbody:
@@ -5162,6 +5160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfc7abc7e4cd492facacb5e7f31214e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSelectable: 1
   projectile: {fileID: 5480646, guid: fe591c8b2b62b4f948e4ded21e53b112, type: 2}
   projectileSpeed: 100
   fireSound: {fileID: 8300000, guid: 8602b7d5cd15c1943a50aa53f171c8cf, type: 3}
@@ -8287,6 +8286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf22a9bd514a4ce399a03ff861a10ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!1 &1855827163 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100504, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
