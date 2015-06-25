@@ -50,12 +50,22 @@ public class RaycastShooting : MonoBehaviour
 			fireSource.PlayOneShot (fireSound, 1);
 
 			// show bullet
-			//Rigidbody instantiatedProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
-			//instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, projectileSpeed));
-			//Destroy (instantiatedProjectile.gameObject, 3); 
+			 
 
 			if (Physics.Raycast (ray, out hit, 100)) {	
 				//bullet hole
+
+				//Rigidbody instantiatedProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
+				//instantiatedProjectile.velocity = (hit.point - transform.position).normalized * 300;
+				//Destroy (instantiatedProjectile.gameObject, 3);
+
+				//instantiatedProjectile.velocity = (hit.point - transform.position).normalized * 500;
+				//instantiatedProjectile.rotation = Quaternion.LookRotation(instantiatedProjectile.velocity);
+
+				//GameObject newBall = Instantiate(ball, transform.position, transform.rotation) as GameObject;
+				//newBall.rigidbody.velocity = (hit.point - transform.position).normalized * speed;
+
+
 				GameObject bulletHoleClone = Instantiate (bulletHole, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
 					
 				float rand = Random.Range (0.01f, 0.02f);
@@ -69,7 +79,8 @@ public class RaycastShooting : MonoBehaviour
 
 				if(hit.transform.tag == "cube"){
 					Debug.Log (hit.transform.tag);
-					bulletHoleClone.transform.parent = GameObject.Find ("Enemy").transform;
+					bulletHoleClone.transform.parent = hit.transform;
+					fireClone.transform.parent = hit.transform;
 				}else{
 					Destroy (bulletHoleClone.gameObject, 15);
 				}

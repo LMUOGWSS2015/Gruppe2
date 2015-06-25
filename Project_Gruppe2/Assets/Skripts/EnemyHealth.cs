@@ -8,6 +8,8 @@ public class EnemyHealth : MonoBehaviour {
 	private int hits = 0;
 	private HUD hud;
 
+	private Material mat;
+
 	// Use this for initialization
 	void Start () {
 		if (health <= 0) {
