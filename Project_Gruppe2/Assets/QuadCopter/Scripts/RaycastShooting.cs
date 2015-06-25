@@ -8,8 +8,11 @@ public class RaycastShooting : GazeMonobehaviour
 	public Rigidbody projectile;
 	public float projectileSpeed = 100;
 	public AudioClip fireSound;
-	public Transform Effect;
+	public GameObject Effect;
 	public GameObject bulletHole;
+	public GameObject explosion;
+	public GameObject Fire;
+
 	private int theDamage = 20;
 	private AudioSource fireSource;
 
@@ -17,6 +20,7 @@ public class RaycastShooting : GazeMonobehaviour
 	float crosshairSize;
 	Rect crosshairRect;
 	Texture crosshairTexture;
+
 
 	void OnGUI ()
 	{
@@ -72,22 +76,45 @@ public class RaycastShooting : GazeMonobehaviour
 			fireSource.PlayOneShot (fireSound, 1);
 
 			// show bullet
-			//Rigidbody instantiatedProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
-			//instantiatedProjectile.velocity = transform.TransformDirection (new Vector3 (0, 0, projectileSpeed));
-			//Destroy (instantiatedProjectile.gameObject, 3); 
+			 
 
 			if (Physics.Raycast (ray, out hit, 100)) {	
 				//bullet hole
-				bulletHole = Instantiate (bulletHole, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
+
+				//Rigidbody instantiatedProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
+				//instantiatedProjectile.velocity = (hit.point - transform.position).normalized * 300;
+				//Destroy (instantiatedProjectile.gameObject, 3);
+
+				//instantiatedProjectile.velocity = (hit.point - transform.position).normalized * 500;
+				//instantiatedProjectile.rotation = Quaternion.LookRotation(instantiatedProjectile.velocity);
+
+				//GameObject newBall = Instantiate(ball, transform.position, transform.rotation) as GameObject;
+				//newBall.rigidbody.velocity = (hit.point - transform.position).normalized * speed;
+
+
+				GameObject bulletHoleClone = Instantiate (bulletHole, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
 					
 				float rand = Random.Range (0.01f, 0.02f);
-				bulletHole.transform.localScale = new Vector3 (rand, rand, rand);
-				bulletHole.transform.parent = GameObject.Find ("Enemy").transform;
+				bulletHoleClone.transform.localScale = new Vector3 (rand, rand, rand);
+
+				GameObject explosionClone = Instantiate (explosion, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
+				Destroy (explosionClone, 5);
+
+				GameObject fireClone = Instantiate (Fire, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
+				Destroy (fireClone, 5);
+
+				if(hit.transform.tag == "cube"){
+					Debug.Log (hit.transform.tag);
+					bulletHoleClone.transform.parent = hit.transform;
+					fireClone.transform.parent = hit.transform;
+				}else{
+					Destroy (bulletHoleClone.gameObject, 15);
+				}
 
 				//particle filter effect
 				GameObject particleClone = Instantiate (Effect, hit.point, Quaternion.LookRotation (hit.normal)) as GameObject;
-				hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
 				Destroy (particleClone, 2);
+				hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
 			}
 		}
 	}
