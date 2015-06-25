@@ -48,23 +48,21 @@ public class RaycastShooting : GazeMonobehaviour
 
 		if(gazeX == 0 && gazeY == Screen.height){
 			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+			gazeX = Screen.width / 2;
+			gazeY = Screen.height / 2;
+
 		}
 		else if(gazeX < 0 || gazeX > Screen.width || gazeY < 0 || gazeY > Screen.height){
 			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+			gazeX = Screen.width / 2;
+			gazeY = Screen.height / 2;
 		}
 		else{
 			crosshairRect = new Rect (gazeX - crosshairSize / 2, Screen.height - gazeY - crosshairSize / 2, crosshairSize, crosshairSize);
 		}
 
-		Vector3 gazePosition = new Vector3 (gazeX, gazeY, -1.1f);
-		
-		Ray ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
-
-		
-		Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
-		Debug.DrawRay(gazePosition, forward, Color.green);
-
-		Debug.Log ("Gaze Position:" + gazePosition);
+		Vector3 gazePosition = new Vector3 (gazeX, gazeY, 0);
+		Ray ray = Camera.main.ScreenPointToRay (gazePosition);
 		
 
 		if (Input.GetButtonDown ("Fire1")) {	
