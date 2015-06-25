@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using iView;
 
-public class RaycastShooting : MonoBehaviour
+public class RaycastShooting : GazeMonobehaviour
 {
 	
 	public Rigidbody projectile;
@@ -11,6 +12,9 @@ public class RaycastShooting : MonoBehaviour
 	public GameObject bulletHole;
 	private int theDamage = 20;
 	private AudioSource fireSource;
+
+	float gazeX,gazeY;
+	float crosshairSize;
 	Rect crosshairRect;
 	Texture crosshairTexture;
 
@@ -23,10 +27,8 @@ public class RaycastShooting : MonoBehaviour
 	void Start ()
 	{
 		fireSource = GetComponent<AudioSource> ();
-		float crosshairSize = Screen.width * 0.05f;
+		crosshairSize = Screen.width * 0.05f;
 		crosshairTexture = Resources.Load ("crosshair") as Texture;
-		crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
-
 	}
 	
 	// Update is called once per frame
@@ -34,8 +36,32 @@ public class RaycastShooting : MonoBehaviour
 	{
 		// show particle filter effect + show bullet hole
 		RaycastHit hit;
+
+		// eye tracking
+		gazeX = iView.SMIGazeController.Instance.GetSample().averagedEye.gazePosInUnityScreenCoords().x;
+		gazeY = iView.SMIGazeController.Instance.GetSample().averagedEye.gazePosInUnityScreenCoords().y;
+		// Debug.Log ("GazePosXY: " + gazeX + " , " + gazeY);
+
+		if(gazeX == 0 && gazeY == Screen.height){
+			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+		}
+		else if(gazeX < 0 || gazeX > Screen.width || gazeY < 0 || gazeY > Screen.height){
+			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+		}
+		else{
+			crosshairRect = new Rect (gazeX - crosshairSize / 2, Screen.height - gazeY - crosshairSize / 2, crosshairSize, crosshairSize);
+		}
+
+		Vector3 gazePosition = new Vector3 (gazeX, gazeY, -1.1f);
+		
 		Ray ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
 
+		
+		Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+		Debug.DrawRay(gazePosition, forward, Color.green);
+
+		Debug.Log ("Gaze Position:" + gazePosition);
+		
 
 		if (Input.GetButtonDown ("Fire1")) {	
 			GameObject go = GameObject.Find ("QuadCopter");

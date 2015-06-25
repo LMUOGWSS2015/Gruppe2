@@ -16,8 +16,8 @@ InputManager:
     gravity: 3
     dead: .00100000005
     sensitivity: 3
-    snap: 1
-    invert: 0
+    snap: 0
+    invert: 1
     type: 2
     axis: 0
     joyNum: 0
@@ -32,8 +32,8 @@ InputManager:
     gravity: 3
     dead: .00100000005
     sensitivity: 3
-    snap: 1
-    invert: 0
+    snap: 0
+    invert: 1
     type: 2
     axis: 1
     joyNum: 0
@@ -42,9 +42,9 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: left ctrl
+    positiveButton: space
     altNegativeButton: 
-    altPositiveButton: mouse 0
+    altPositiveButton: joystick button 5
     gravity: 1000
     dead: .00100000005
     sensitivity: 1000
@@ -161,7 +161,7 @@ InputManager:
     dead: .189999998
     sensitivity: 1
     snap: 0
-    invert: 0
+    invert: 1
     type: 2
     axis: 3
     joyNum: 0

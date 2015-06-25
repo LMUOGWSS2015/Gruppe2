@@ -5,10 +5,8 @@ public class FlyController : MonoBehaviour {
 	
 	public Transform drone;
 	
-	public float movementSpeed = 10.0f;
-	public float rotationSpeed = 0.05f;
-	public float target = 270.0F;
-	public float speed = 45.0F;
+	public float movementSpeed = 0.5f;
+	public float rotationSpeed = 1.5f;
 	
 	public float controllerSensitivity = 0.5f;
 	
@@ -125,45 +123,45 @@ public class FlyController : MonoBehaviour {
 	
 	// drohne steigt
 	public void GoUp(){
-		transform.Translate(Vector3.up);
+		transform.Translate(Vector3.up * movementSpeed);
 	}
 	
 	// drohne sinkt
 	public void GoDown(){
-		transform.Translate(Vector3.down);
+		transform.Translate(Vector3.down * movementSpeed);
 	}
 	
 	// drohne dreht nach links
 	public void RotateLeft(){
-		transform.Rotate(Vector3.down*2);
+		transform.Rotate(Vector3.down * rotationSpeed);
 	}
 	
 	// drohne dreht nach rechts
 	public void RotateRight(){
-		transform.Rotate(Vector3.up*2);
+		transform.Rotate(Vector3.up * rotationSpeed);
 	}
 	
 	// drohne fliegt vorwaerts
 	public void GoForward(float neigung){
-		transform.Translate(Vector3.forward);
+		transform.Translate(Vector3.forward * movementSpeed);
 		drone.transform.rotation = Quaternion.Euler (transform.rotation.eulerAngles.x+15*neigung, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 	}
 	
 	// drohne fliegt zurueck
 	public void GoBack(float neigung){
-		transform.Translate(Vector3.back);
+		transform.Translate(Vector3.back * movementSpeed);
 		drone.transform.rotation = Quaternion.Euler (transform.rotation.eulerAngles.x+15*neigung, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
 	}
 	
 	// drohne fliegt nach links
 	public void GoLeft(float neigung){
-		transform.Translate(Vector3.left);
+		transform.Translate(Vector3.left * movementSpeed);
 		drone.transform.rotation = Quaternion.Euler (transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z+15*neigung);
 	}
 	
 	// drohne fliegt nach rechts
 	public void GoRight(float neigung){
-		transform.Translate(Vector3.right);
+		transform.Translate(Vector3.right * movementSpeed);
 		drone.transform.rotation = Quaternion.Euler (transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z+15*neigung);
 	}
 	
