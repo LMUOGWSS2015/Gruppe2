@@ -108,7 +108,6 @@ public class RaycastShooting : GazeMonobehaviour
 				Destroy (fireClone, 5);
 
 				if (hit.transform.tag == "cube") {
-					Debug.Log (hit.transform.tag);
 					bulletHoleClone.transform.parent = hit.transform;
 					fireClone.transform.parent = hit.transform;
 				} else {

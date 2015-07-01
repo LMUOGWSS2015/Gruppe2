@@ -24,7 +24,6 @@ public class HUD : MonoBehaviour
 	{
 		Debug.Log ("Draw!");
 		hits++;
-		Debug.Log (hits);
 		GameObject scoreGO = GameObject.Find ("ScoreText");
 		Text guiText = (Text)scoreGO.GetComponent (typeof(Text));
 		guiText.text = "Treffer: " + hits;
