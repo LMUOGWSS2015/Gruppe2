@@ -12,4 +12,11 @@ public class Menu2 : MonoBehaviour {
 	public void QuitGame(){
 		Application.Quit ();
 	}
+
+	/* TODO muss noch getestet werden
+	void Update(){ 
+	//quit game if escape key is pressed
+	if (Input.GetKey(KeyCode.Escape)) { Application.Quit();
+	}
+	*/
 }
