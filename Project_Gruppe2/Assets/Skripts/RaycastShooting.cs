@@ -9,7 +9,6 @@ public class RaycastShooting : GazeMonobehaviour
 	public float projectileSpeed = 100;
 	public AudioClip fireSound;
 	public GameObject Effect;
-	public GameObject bulletHole;
 	public GameObject explosion;
 	public GameObject Fire;
 	private int theDamage = 20;
@@ -96,8 +95,8 @@ public class RaycastShooting : GazeMonobehaviour
 				//newBall.rigidbody.velocity = (hit.point - transform.position).normalized * speed;
 
 
-				GameObject bulletHoleClone = PhotonNetwork.Instantiate(bulletHole, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
-					
+				GameObject bulletHoleClone = (GameObject) PhotonNetwork.Instantiate("BulletHole", hit.point, Quaternion.LookRotation (Vector3.up, hit.normal), 0);
+
 				float rand = Random.Range (0.01f, 0.02f);
 				bulletHoleClone.transform.localScale = new Vector3 (rand, rand, rand);
 
