@@ -11,7 +11,7 @@ public class NetworkManagerPUN : MonoBehaviour {
 	}
 	
 	void Connect () {
-		PhotonNetwork.ConnectUsingSettings ("Multuplayer Game Of Drones 0.1");
+		PhotonNetwork.ConnectUsingSettings ("Multiplayer Game Of Drones 0.1");
 	}
 	
 	void OnGUI(){
