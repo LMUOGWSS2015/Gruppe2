@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour {
 		if (health <= 0) {
 			Dead ();
 		}
-		hud = new HUD ();
+		hud = gameObject.AddComponent<HUD>();
 	}
 	
 	// Update is called once per frame

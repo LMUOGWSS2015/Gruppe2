@@ -11,13 +11,11 @@ public class SpawnEnemys : MonoBehaviour {
 
 		for(int i=0; i<50; i++){
 		Vector3 vec = new Vector3 (Random.Range (-500, 500), Random.Range (0, 50), Random.Range (-500, 500));
-
-		Debug.Log (vec);
 	
 		var hitColliders = Physics.OverlapSphere(vec, 4f);
 		
 			if(hitColliders.Length==0){
-				GameObject enemyClone = Instantiate (enemy, vec, Quaternion.LookRotation (Vector3.back)) as GameObject;
+				Instantiate (enemy, vec, Quaternion.LookRotation (Vector3.back));
 			}
 		
 		}
