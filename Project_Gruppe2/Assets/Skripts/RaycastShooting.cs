@@ -12,15 +12,12 @@ public class RaycastShooting : GazeMonobehaviour
 	public GameObject bulletHole;
 	public GameObject explosion;
 	public GameObject Fire;
-
 	private int theDamage = 20;
 	private AudioSource fireSource;
-
-	float gazeX,gazeY;
+	float gazeX, gazeY;
 	float crosshairSize;
 	Rect crosshairRect;
 	Texture crosshairTexture;
-
 
 	void OnGUI ()
 	{
@@ -62,9 +59,11 @@ public class RaycastShooting : GazeMonobehaviour
 			
 			Vector3 gazePosition = new Vector3 (gazeX, gazeY, 0);
 
-			 ray = Camera.main.ScreenPointToRay (gazePosition);
+			ray = Camera.main.ScreenPointToRay (gazePosition);
 		} else {
-			 ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
+			ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
+			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+
 		}
 
 
@@ -108,11 +107,11 @@ public class RaycastShooting : GazeMonobehaviour
 				GameObject fireClone = Instantiate (Fire, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
 				Destroy (fireClone, 5);
 
-				if(hit.transform.tag == "cube"){
+				if (hit.transform.tag == "cube") {
 					Debug.Log (hit.transform.tag);
 					bulletHoleClone.transform.parent = hit.transform;
 					fireClone.transform.parent = hit.transform;
-				}else{
+				} else {
 					Destroy (bulletHoleClone.gameObject, 15);
 				}
 
