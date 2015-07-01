@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NetworkCharacter : Photon.MonoBehaviour
 {
-	Vector3 realPosition;
+	Vector3 realPosition = Vector3.zero;
 	Quaternion realRotation = Quaternion.identity;
 
 	// Use this for initialization
