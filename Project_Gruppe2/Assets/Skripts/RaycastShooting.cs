@@ -96,7 +96,7 @@ public class RaycastShooting : GazeMonobehaviour
 				//newBall.rigidbody.velocity = (hit.point - transform.position).normalized * speed;
 
 
-				GameObject bulletHoleClone = Instantiate (bulletHole, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
+				GameObject bulletHoleClone = PhotonNetwork.Instantiate(bulletHole, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
 					
 				float rand = Random.Range (0.01f, 0.02f);
 				bulletHoleClone.transform.localScale = new Vector3 (rand, rand, rand);
