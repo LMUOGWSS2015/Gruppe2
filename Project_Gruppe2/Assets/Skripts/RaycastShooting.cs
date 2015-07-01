@@ -100,10 +100,10 @@ public class RaycastShooting : GazeMonobehaviour
 				float rand = Random.Range (0.01f, 0.02f);
 				bulletHoleClone.transform.localScale = new Vector3 (rand, rand, rand);
 
-				GameObject explosionClone = Instantiate (explosion, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
+				GameObject explosionClone = (GameObject) PhotonNetwork.Instantiate ("ExplosionMobile", hit.point, Quaternion.LookRotation (Vector3.up, hit.normal), 0);
 				Destroy (explosionClone, 5);
 
-				GameObject fireClone = Instantiate (Fire, hit.point, Quaternion.LookRotation (Vector3.up, hit.normal)) as GameObject;
+				GameObject fireClone = (GameObject) PhotonNetwork.Instantiate ("FireMobile", hit.point, Quaternion.LookRotation (Vector3.up, hit.normal), 0);
 				Destroy (fireClone, 5);
 
 				if (hit.transform.tag == "cube") {
@@ -114,7 +114,7 @@ public class RaycastShooting : GazeMonobehaviour
 				}
 
 				//particle filter effect
-				GameObject particleClone = Instantiate (Effect, hit.point, Quaternion.LookRotation (hit.normal)) as GameObject;
+				GameObject particleClone = (GameObject) PhotonNetwork.Instantiate ("Particle System", hit.point, Quaternion.LookRotation (hit.normal), 0);
 				Destroy (particleClone, 2);
 				hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
 			}
