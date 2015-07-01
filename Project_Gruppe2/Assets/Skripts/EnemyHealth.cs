@@ -27,13 +27,14 @@ public class EnemyHealth : MonoBehaviour {
 
 	void Dead(){
 		Destroy (this.gameObject);
+		hud.incHits ();
+
 	}
 
 	void ApplyDamage(int theDamage){
 		hits += 1;
 		health -= theDamage;
 
-		hud.drawHits (hits);
 	}
 
 }

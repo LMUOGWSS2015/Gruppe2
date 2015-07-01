@@ -37,32 +37,39 @@ public class RaycastShooting : GazeMonobehaviour
 	
 	// Update is called once per frame
 	void Update ()
-	{
+	{	
 		// show particle filter effect + show bullet hole
 		RaycastHit hit;
+		Ray ray;
+		if (Application.platform == RuntimePlatform.WindowsPlayer) {
+			// eye tracking
+			gazeX = iView.SMIGazeController.Instance.GetSample ().averagedEye.gazePosInUnityScreenCoords ().x;
+			gazeY = iView.SMIGazeController.Instance.GetSample ().averagedEye.gazePosInUnityScreenCoords ().y;
+			// Debug.Log ("GazePosXY: " + gazeX + " , " + gazeY);
+			
+			if (gazeX == 0 && gazeY == Screen.height) {
+				crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+				gazeX = Screen.width / 2;
+				gazeY = Screen.height / 2;
+				
+			} else if (gazeX < 0 || gazeX > Screen.width || gazeY < 0 || gazeY > Screen.height) {
+				crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+				gazeX = Screen.width / 2;
+				gazeY = Screen.height / 2;
+			} else {
+				crosshairRect = new Rect (gazeX - crosshairSize / 2, Screen.height - gazeY - crosshairSize / 2, crosshairSize, crosshairSize);
+			}
+			
+			Vector3 gazePosition = new Vector3 (gazeX, gazeY, 0);
 
-		// eye tracking
-		gazeX = iView.SMIGazeController.Instance.GetSample().averagedEye.gazePosInUnityScreenCoords().x;
-		gazeY = iView.SMIGazeController.Instance.GetSample().averagedEye.gazePosInUnityScreenCoords().y;
-		// Debug.Log ("GazePosXY: " + gazeX + " , " + gazeY);
-
-		if(gazeX == 0 && gazeY == Screen.height){
-			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
-			gazeX = Screen.width / 2;
-			gazeY = Screen.height / 2;
-
+			 ray = Camera.main.ScreenPointToRay (gazePosition);
+		} else {
+			 ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
 		}
-		else if(gazeX < 0 || gazeX > Screen.width || gazeY < 0 || gazeY > Screen.height){
-			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
-			gazeX = Screen.width / 2;
-			gazeY = Screen.height / 2;
-		}
-		else{
-			crosshairRect = new Rect (gazeX - crosshairSize / 2, Screen.height - gazeY - crosshairSize / 2, crosshairSize, crosshairSize);
-		}
 
-		Vector3 gazePosition = new Vector3 (gazeX, gazeY, 0);
-		Ray ray = Camera.main.ScreenPointToRay (gazePosition);
+
+
+
 		
 
 		if (Input.GetButtonDown ("Fire1")) {	
