@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3f016b36bb94feeac2d791b797160d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standbyCamera: {fileID: 816052081}
+  standbyCamera: {fileID: 816052077}
 --- !u!4 &41072141
 Transform:
   m_ObjectHideFlags: 0
@@ -3079,7 +3079,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 816052077}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!92 &816052079
 Behaviour:
   m_ObjectHideFlags: 0

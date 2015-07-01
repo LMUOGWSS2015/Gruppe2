@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NetworkManagerPUN : MonoBehaviour {
 
-	public Camera standbyCamera;
+	public GameObject standbyCamera;
 	
 	// Use this for initialization
 	void Start () {
@@ -48,7 +48,9 @@ public class NetworkManagerPUN : MonoBehaviour {
 		mainCamera.GetComponent<Camera> ().enabled = true;
 		mainCamera.FindChild ("Camera").GetComponent<Camera> ().enabled = true;
 
+		myPlayer.GetComponent<NetworkCharacter> ().enabled = true;
+
 		// disable standby camera when game starts
-		standbyCamera.enabled = false;
+		standbyCamera.SetActive (false);
 	}
 }

@@ -36,6 +36,7 @@ GameObject:
   - 114: {fileID: 11455204}
   - 114: {fileID: 11411780}
   - 82: {fileID: 8210044}
+  - 114: {fileID: 11400628}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1226,6 +1227,17 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11400628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104944}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 280faf17ca91b4c558b4feebd4d12c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11401698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1426,7 +1438,7 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 430844}
+  - {fileID: 11400628}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
