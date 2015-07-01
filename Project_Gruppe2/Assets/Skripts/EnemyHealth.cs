@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour {
 		if (health <= 0) {
 			Dead ();
 		}
-		hud = new HUD ();
+		hud = gameObject.AddComponent<HUD>();
 	}
 	
 	// Update is called once per frame
@@ -27,13 +27,14 @@ public class EnemyHealth : MonoBehaviour {
 
 	void Dead(){
 		Destroy (this.gameObject);
+		hud.incHits ();
+
 	}
 
 	void ApplyDamage(int theDamage){
 		hits += 1;
 		health -= theDamage;
 
-		hud.drawHits (hits);
 	}
 
 }

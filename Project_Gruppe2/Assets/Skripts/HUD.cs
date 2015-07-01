@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
 	public GUIText text;
+	static int hits = 0;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -18,9 +20,10 @@ public class HUD : MonoBehaviour
 	
 	}
 
-	public void drawHits (int hits)
+	public void incHits ()
 	{
-//		Debug.Log ("Draw!");
+		Debug.Log ("Draw!");
+		hits++;
 		GameObject scoreGO = GameObject.Find ("ScoreText");
 		Text guiText = (Text)scoreGO.GetComponent (typeof(Text));
 		guiText.text = "Treffer: " + hits;
