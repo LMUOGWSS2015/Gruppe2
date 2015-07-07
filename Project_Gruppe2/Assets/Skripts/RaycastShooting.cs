@@ -11,7 +11,6 @@ public class RaycastShooting : GazeMonobehaviour
 	public GameObject Effect;
 	public GameObject explosion;
 	public GameObject Fire;
-
 	private int theDamage = 20;
 	private AudioSource fireSource;
 	private float gazeX, gazeY;
@@ -21,6 +20,8 @@ public class RaycastShooting : GazeMonobehaviour
 	private RaycastHit hit;
 	private Ray ray;
 	private EnemyHealth enemyHealth;
+	private Utils utils;
+	private bool isSinglePlayer;
 
 	void OnGUI ()
 	{
@@ -33,9 +34,11 @@ public class RaycastShooting : GazeMonobehaviour
 		fireSource = GetComponent<AudioSource> ();
 		crosshairSize = Screen.width * 0.05f;
 		crosshairTexture = Resources.Load ("crosshair") as Texture;
-		enemyHealth = this.transform.GetComponent<EnemyHealth>();
+		enemyHealth = this.transform.GetComponent<EnemyHealth> ();
+		utils = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<Utils> ();
+		isSinglePlayer = utils.GetIsSinglePlayer ();
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
 	{	
@@ -66,10 +69,12 @@ public class RaycastShooting : GazeMonobehaviour
 			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
 		}
 
+
+	
 		// player shoots
 		if (Input.GetButtonDown ("Fire1")) {
 			// show light
-			GameObject.Find ("QuadCopter").GetComponent<LightControl>().shootLight();
+			GameObject.Find ("QuadCopter").GetComponent<LightControl> ().shootLight ();
 
 			// play fire sound when fire button is pressed
 			fireSource.PlayOneShot (fireSound, 1);
@@ -86,16 +91,18 @@ public class RaycastShooting : GazeMonobehaviour
 				//newBall.rigidbody.velocity = (hit.point - transform.position).normalized * speed;
 
 				// bullet hole
-				GameObject bulletHoleClone = (GameObject) PhotonNetwork.Instantiate("BulletHole", hit.point, Quaternion.LookRotation (Vector3.up, hit.normal), 0);
+				GameObject bulletHoleClone = utils.CustomInstantiate ("BulletHole", hit);
+
 				float rand = Random.Range (0.01f, 0.02f);
 				bulletHoleClone.transform.localScale = new Vector3 (rand, rand, rand);
 
 				// explosion effect
-				GameObject explosionClone = (GameObject) PhotonNetwork.Instantiate ("ExplosionMobile", hit.point, Quaternion.LookRotation (Vector3.up, hit.normal), 0);
+				GameObject explosionClone = utils.CustomInstantiate ("ExplosionMobile", hit);
 				Destroy (explosionClone, 5);
 
 				// fire around bullet holes
-				GameObject fireClone = (GameObject) PhotonNetwork.Instantiate ("FireMobile", hit.point, Quaternion.LookRotation (Vector3.up, hit.normal), 0);
+
+				GameObject fireClone = utils.CustomInstantiate ("FireMobile", hit);
 				Destroy (fireClone, 5);
 
 				if (hit.transform.tag == "cube") {
@@ -106,13 +113,14 @@ public class RaycastShooting : GazeMonobehaviour
 				}
 
 				// particle filter effect
-				GameObject particleClone = (GameObject) PhotonNetwork.Instantiate ("Particle System", hit.point, Quaternion.LookRotation (hit.normal), 0);
+				GameObject particleClone = utils.CustomInstantiate ("Particle System", hit);
 				Destroy (particleClone, 2);
 
-				if(hit.transform.tag == "Player"){
-					enemyHealth.ApplyDamage(theDamage);
-					hit.transform.GetComponent<PhotonView>().RPC("ApplyDamage", PhotonTargets.All, theDamage);
-					//hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
+				if (isSinglePlayer) {
+					hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
+				} else {
+					enemyHealth.ApplyDamage (theDamage);
+					hit.transform.GetComponent<PhotonView> ().RPC ("ApplyDamage", PhotonTargets.All, theDamage);
 				}
 			}
 		}
