@@ -3235,8 +3235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6df913e428d54752b9be3ff41a77744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
-  timer: 185
+  timer: 15
+  timerText: {fileID: 0}
 --- !u!1 &772488312 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100826, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
@@ -6214,7 +6214,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_Text
-      value: 180 sec
+      value: 10 sec
       objectReference: {fileID: 0}
     - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_FontData.m_Font
@@ -7086,7 +7086,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22469194, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 22469194, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_SizeDelta.y
@@ -7121,6 +7121,12 @@ Prefab:
       value: 
       objectReference: {fileID: 12800000, guid: ce82d244f7b0b4decbb81909baf38ad2,
         type: 3}
+    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
+      propertyPath: m_Text
+      value: 'Score: 0
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19e93ed9da67140259d629d41c023992, type: 2}
   m_IsPrefabParent: 0
