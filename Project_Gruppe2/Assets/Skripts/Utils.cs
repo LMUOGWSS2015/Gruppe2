@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Utils : MonoBehaviour {
 
-	private bool isSinglePlayer = false;
+	public static bool isSinglePlayer = false;
 
 	// Use this for initialization
 	void Start () {
@@ -15,18 +15,18 @@ public class Utils : MonoBehaviour {
 	
 	}
 
-	public bool GetIsSinglePlayer(){
-		return this.isSinglePlayer;
-	}
-
-	public void SetIsSinglePlayer(bool isSinglePlayer){
-		this.isSinglePlayer = isSinglePlayer;
-	}
+//	public bool GetIsSinglePlayer(){
+//		return this.isSinglePlayer;
+//	}
+//
+//	public void SetIsSinglePlayer(bool isSinglePlayer){
+//		this.isSinglePlayer = isSinglePlayer;
+//	}
 
 	public GameObject CustomInstantiate (string gameObjectString, RaycastHit myHit)
 	{
 		GameObject myGameObject = null;
-		if (this.isSinglePlayer) {
+		if (isSinglePlayer) {
 			GameObject myResource = (GameObject)Resources.Load (gameObjectString, typeof(GameObject));
 			myGameObject = (GameObject)Instantiate (myResource, myHit.point, Quaternion.LookRotation (Vector3.up, myHit.normal));
 		} else {
