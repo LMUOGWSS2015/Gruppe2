@@ -4,7 +4,8 @@ using System.Collections;
 public class NetworkManagerPUN : MonoBehaviour {
 
 	public GameObject standbyCamera;
-	
+	private int numberEnemys = 6; 
+
 	// Use this for initialization
 	void Start () {
 		Connect ();
@@ -31,6 +32,18 @@ public class NetworkManagerPUN : MonoBehaviour {
 	void OnJoinedRoom(){
 		Debug.Log ("OnJoinedRoom");
 		SpawnMyPlayer ();
+		SpawnEnemys ();
+	}
+
+	void SpawnEnemys(){
+		Debug.Log ("SpawnEnemys");
+		SpawnSpotEnemy[] spawnSpots = GameObject.FindObjectsOfType<SpawnSpotEnemy>();
+
+		for(int i=0; i<numberEnemys; i++){
+			SpawnSpotEnemy myEnemy = spawnSpots[ Random.Range (0, spawnSpots.Length) ];
+			PhotonNetwork.Instantiate("Sphere 1", myEnemy.transform.position, myEnemy.transform.rotation, 0);
+		}
+
 	}
 
 	void SpawnMyPlayer(){

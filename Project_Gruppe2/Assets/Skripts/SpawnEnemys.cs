@@ -9,7 +9,7 @@ public class SpawnEnemys : MonoBehaviour {
 	void Start () {
 
 
-		for(int i=0; i<50; i++){
+		for(int i=0; i<0; i++){
 		Vector3 vec = new Vector3 (Random.Range (-500, 500), Random.Range (0, 50), Random.Range (-500, 500));
 	
 		var hitColliders = Physics.OverlapSphere(vec, 4f);
