@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Utils : MonoBehaviour {
 
-	public static bool isSinglePlayer = false;
-	public static bool offlineMode = true;
+	public static bool isSinglePlayer = true;
+	public static bool offlineMode = false;
 
 	// Use this for initialization
 	void Start () {

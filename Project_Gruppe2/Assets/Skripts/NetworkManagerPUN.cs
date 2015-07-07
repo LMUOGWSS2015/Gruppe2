@@ -6,6 +6,7 @@ public class NetworkManagerPUN : MonoBehaviour {
 	public GameObject standbyCamera;
 	private int numberEnemys = 40; 
 	private ArrayList indexEnemys = new ArrayList();
+	private bool failed;
 
 	// Use this for initialization
 	void Start () {
@@ -33,11 +34,15 @@ public class NetworkManagerPUN : MonoBehaviour {
 	void OnPhotonRandomJoinFailed(){
 		Debug.Log ("OnPhotonRandomJoinFailed");
 		PhotonNetwork.CreateRoom (null);
+		failed = true;
 	}
 
 	void OnJoinedRoom(){
 		Debug.Log ("OnJoinedRoom");
 		SpawnMyPlayer ();
+		if (failed) {
+			SpawnEnemys ();
+		}
 	}
 
 	void SpawnEnemys(){
