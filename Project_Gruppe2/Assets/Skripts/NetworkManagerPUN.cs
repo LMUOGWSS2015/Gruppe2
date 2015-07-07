@@ -11,7 +11,12 @@ public class NetworkManagerPUN : MonoBehaviour {
 	}
 	
 	void Connect () {
-		PhotonNetwork.ConnectUsingSettings ("Multiplayer Game Of Drones 0.1");
+		if (Utils.offlineMode) {
+			PhotonNetwork.offlineMode = true;
+			OnJoinedLobby();
+		} else {
+			PhotonNetwork.ConnectUsingSettings ("Multiplayer Game Of Drones 0.1");
+		}
 	}
 	
 	void OnGUI(){
