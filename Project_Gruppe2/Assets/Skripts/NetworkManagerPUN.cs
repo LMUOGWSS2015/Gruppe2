@@ -38,7 +38,6 @@ public class NetworkManagerPUN : MonoBehaviour {
 	void OnJoinedRoom(){
 		Debug.Log ("OnJoinedRoom");
 		SpawnMyPlayer ();
-		SpawnEnemys ();
 	}
 
 	void SpawnEnemys(){
