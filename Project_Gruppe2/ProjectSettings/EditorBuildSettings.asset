@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scenes/RaceScene.unity
   - enabled: 1
     path: Assets/Scenes/Drone in City Multiplayer.unity
+  - enabled: 1
+    path: Assets/Scenes/Highscores_Scene.unity
