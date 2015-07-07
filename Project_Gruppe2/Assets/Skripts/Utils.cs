@@ -4,6 +4,7 @@ using System.Collections;
 public class Utils : MonoBehaviour {
 
 	public static bool isSinglePlayer = false;
+	public static bool offlineMode = true;
 
 	// Use this for initialization
 	void Start () {
