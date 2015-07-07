@@ -36,7 +36,7 @@ public class RaycastShooting : GazeMonobehaviour
 		crosshairTexture = Resources.Load ("crosshair") as Texture;
 		enemyHealth = this.transform.GetComponent<EnemyHealth> ();
 		utils = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<Utils> ();
-		isSinglePlayer = utils.GetIsSinglePlayer ();
+		isSinglePlayer = Utils.isSinglePlayer;
 	}
 
 	// Update is called once per frame
@@ -119,7 +119,7 @@ public class RaycastShooting : GazeMonobehaviour
 				if (isSinglePlayer) {
 					hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
 				} else {
-					enemyHealth.ApplyDamage (theDamage);
+//					enemyHealth.ApplyDamage (theDamage);
 					hit.transform.GetComponent<PhotonView> ().RPC ("ApplyDamage", PhotonTargets.All, theDamage);
 				}
 			}

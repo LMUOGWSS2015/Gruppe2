@@ -32,7 +32,7 @@ public class EnemyHealth : Photon.MonoBehaviour
 
 	void Dead ()
 	{
-		if (utils.GetIsSinglePlayer ()) {
+		if (Utils.isSinglePlayer) {
 			Destroy (gameObject);
 		} else {
 			PhotonNetwork.Destroy (gameObject);
