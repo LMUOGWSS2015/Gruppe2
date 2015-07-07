@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class EnemyHealth : MonoBehaviour {
+public class EnemyHealth : Photon.MonoBehaviour {
 
 	public int health = 100;
 
@@ -20,21 +20,22 @@ public class EnemyHealth : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log ("Health: " + health);
 		if (health <= 0) {
 			Dead ();
 		}
 	}
 
 	void Dead(){
-		Destroy (this.gameObject);
+		PhotonNetwork.Destroy (gameObject);
 		hud.incHits ();
-
 	}
 
-	void ApplyDamage(int theDamage){
+	[PunRPC]
+	public void ApplyDamage(int theDamage){
+		Debug.Log ("ApplyDamage: " + theDamage);
 		hits += 1;
 		health -= theDamage;
 
 	}
-
 }
