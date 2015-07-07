@@ -161,12 +161,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 902628073}
-  - {fileID: 1744474966}
   m_Father: {fileID: 761646516}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 112, y: 0}
   m_SizeDelta: {x: 75, y: 60}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &30959725 stripped
@@ -2193,7 +2192,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1105938, y: 2.11059284, z: 5.99999952}
   m_Center: {x: -1.59872183e-14, y: 5.36441803e-07, z: 2.99999976}
-<<<<<<< Updated upstream:Project_Gruppe2/Assets/Scenes/Drone in City.unity
 --- !u!1 &605837555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,8 +2252,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-=======
->>>>>>> Stashed changes:Project_Gruppe2/Assets/Drone in City.unity
 --- !u!1 &606993761 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100486, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
@@ -2637,11 +2633,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream:Project_Gruppe2/Assets/Scenes/Drone in City.unity
   m_RootOrder: 4
-=======
-  m_RootOrder: 5
->>>>>>> Stashed changes:Project_Gruppe2/Assets/Drone in City.unity
 --- !u!1 &656525399 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100798, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
@@ -3031,7 +3023,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400976, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 400976, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
       propertyPath: m_LocalScale.x
@@ -3243,7 +3235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 0}
-  timer: 185
 --- !u!1 &772488312 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100826, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
@@ -4793,11 +4784,7 @@ Transform:
   - {fileID: 340941008}
   - {fileID: 273327590}
   m_Father: {fileID: 0}
-<<<<<<< Updated upstream:Project_Gruppe2/Assets/Scenes/Drone in City.unity
   m_RootOrder: 2
-=======
-  m_RootOrder: 3
->>>>>>> Stashed changes:Project_Gruppe2/Assets/Drone in City.unity
 --- !u!114 &1060703976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6918,7 +6905,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22469194, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 163
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22469194, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -6956,15 +6943,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
-      propertyPath: m_Text
-      value: 'Score: 0'
-      objectReference: {fileID: 0}
-    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: ce82d244f7b0b4decbb81909baf38ad2,
-        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19e93ed9da67140259d629d41c023992, type: 2}
   m_IsPrefabParent: 0
@@ -7656,72 +7634,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.11059356, y: 2.11059403, z: 5.74230528}
   m_Center: {x: -1.01327885e-06, y: 3.01980527e-14, z: 2.87100053}
---- !u!1 &1744474963
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1744474966}
-  - 222: {fileID: 1744474965}
-  - 114: {fileID: 1744474964}
-  m_Layer: 5
-  m_Name: TimeText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1744474964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1744474963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: ce82d244f7b0b4decbb81909baf38ad2, type: 3}
-    m_FontSize: 25
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: ' 180 sec'
---- !u!222 &1744474965
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1744474963}
---- !u!224 &1744474966
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1744474963}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 25095482}
-  m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0, y: 1}
 --- !u!1 &1747711221 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100494, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
@@ -7866,119 +7778,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1105938, y: 2.11059403, z: 3.75473094}
   m_Center: {x: -1.90734863e-06, y: 0, z: 1.8771435}
-<<<<<<< Updated upstream:Project_Gruppe2/Assets/Scenes/Drone in City.unity
-=======
---- !u!1 &1814011340
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1814011346}
-  - 64: {fileID: 1814011342}
-  - 23: {fileID: 1814011341}
-  - 222: {fileID: 1814011345}
-  - 33: {fileID: 1814011343}
-  - 114: {fileID: 1814011344}
-  - 65: {fileID: 1814011347}
-  m_Layer: 0
-  m_Name: Ground
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!23 &1814011341
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1814011340}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!64 &1814011342
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1814011340}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!33 &1814011343
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1814011340}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1814011344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1814011340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a1595f5b0f1468f90caefe9cb3adfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!222 &1814011345
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1814011340}
---- !u!224 &1814011346
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1814011340}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: .479999989}
-  m_LocalScale: {x: 3.30180335, y: 3.30180192, z: 3.30180192}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: .349999994, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: .5, y: .5}
---- !u!65 &1814011347
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1814011340}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 10, y: 2.22044605e-16, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
->>>>>>> Stashed changes:Project_Gruppe2/Assets/Drone in City.unity
 --- !u!1 &1815268386 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100664, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
