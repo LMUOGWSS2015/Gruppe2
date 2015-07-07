@@ -4,7 +4,8 @@ using System.Collections;
 public class NetworkManagerPUN : MonoBehaviour {
 
 	public GameObject standbyCamera;
-	private int numberEnemys = 6; 
+	private int numberEnemys = 40; 
+	private ArrayList indexEnemys = new ArrayList();
 
 	// Use this for initialization
 	void Start () {
@@ -43,9 +44,17 @@ public class NetworkManagerPUN : MonoBehaviour {
 	void SpawnEnemys(){
 		Debug.Log ("SpawnEnemys");
 		SpawnSpotEnemy[] spawnSpots = GameObject.FindObjectsOfType<SpawnSpotEnemy>();
+		Debug.Log (spawnSpots.Length);
 
 		for(int i=0; i<numberEnemys; i++){
-			SpawnSpotEnemy myEnemy = spawnSpots[ Random.Range (0, spawnSpots.Length) ];
+
+			int rand = Random.Range (0, spawnSpots.Length);
+			while(indexEnemys.Contains(rand)){
+				rand = Random.Range (0, spawnSpots.Length);
+			}
+			indexEnemys.Add(rand);
+
+			SpawnSpotEnemy myEnemy = spawnSpots[ rand ];
 			PhotonNetwork.Instantiate("Sphere 1", myEnemy.transform.position, myEnemy.transform.rotation, 0);
 		}
 
