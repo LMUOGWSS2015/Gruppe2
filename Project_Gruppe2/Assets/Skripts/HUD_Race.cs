@@ -3,17 +3,18 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class HUD : MonoBehaviour
+public class HUD_Race : MonoBehaviour
 {
-	static int score = 0;
-
-	public float timer = 15.0f;
-	public Text timerText;
-
-	dreamloLeaderBoard dlShooter;
-
 	int totalScore = 0;
 	string playerName = "";
+
+	public Text timerText;
+	public static int score = 0;
+
+	public float timer = 15.0f;
+
+	dreamloLeaderBoard dlRace;
+	
 	bool gameOver;
 	bool displayLeaderBoard;
 
@@ -23,9 +24,8 @@ public class HUD : MonoBehaviour
 		GameObject timeText = GameObject.Find("TimeText");
 		timerText = (Text)timeText.GetComponent (typeof(Text));
 
-		// get the reference here...
-		this.dlShooter = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
-		
+		this.dlRace = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
+
 		gameOver = false;
 		displayLeaderBoard = false;
 	}
@@ -38,8 +38,8 @@ public class HUD : MonoBehaviour
 			if (timer <= 10.0f) {
 				timerText.text = "" + Mathf.RoundToInt (timer) + " sec";
 			}
+			
 		}
-
 		else {
 			// GAME OVER
 			Time.timeScale=0.0f;
@@ -47,14 +47,13 @@ public class HUD : MonoBehaviour
 			gameOver = true;
 		}
 	}
-
-    public void incHits ()
+	
+	public void incScore ()
 	{
 		score++;
 		GameObject scoreGO = GameObject.Find ("ScoreText");
 		Text scoreText = (Text)scoreGO.GetComponent (typeof(Text));
 		scoreText.text = "Score: " + score;
-
 	}
 
 	void OnGUI()
@@ -62,27 +61,27 @@ public class HUD : MonoBehaviour
 		if (gameOver) {
 			float width = 400;
 			float height = 200;
-			
+		
 			Rect r = new Rect ((Screen.width / 2) - (width / 2), (Screen.height / 2) - (height / 2), width, height);
 			GUILayout.BeginArea (r, new GUIStyle ("box"));
-			
-			GUILayout.Label ("SHOOTER | GAME OVER");
+
+			GUILayout.Label ("RACE | GAME OVER");
 			GUILayout.Label ("Total Score: " + this.totalScore.ToString ());
-			
+
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label ("Your Name: ");
 			this.playerName = GUILayout.TextField (this.playerName);
 			GUILayout.EndHorizontal ();
-			
+
 			if(displayLeaderBoard == false){
 				if (GUILayout.Button ("Save Score")) {	
-					dlShooter.AddScore (this.playerName, totalScore);
+					dlRace.AddScore (this.playerName, totalScore);
 					displayLeaderBoard = true;
 				}
 			}
-			
+
 			if (displayLeaderBoard == true) {
-				List<dreamloLeaderBoard.Score> scoreList = dlShooter.ToListHighToLow();
+				List<dreamloLeaderBoard.Score> scoreList = dlRace.ToListHighToLow();
 				if (scoreList == null) 
 				{
 					GUILayout.Label("(loading...)");
@@ -94,9 +93,9 @@ public class HUD : MonoBehaviour
 						Application.LoadLevel (0);
 					}
 				}
-				
+
 			}
-			
+
 			GUILayout.EndArea ();
 		}
 	}

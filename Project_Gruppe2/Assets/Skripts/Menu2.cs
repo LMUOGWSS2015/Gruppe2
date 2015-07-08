@@ -14,6 +14,12 @@ public class Menu2 : MonoBehaviour {
 			Utils.isSinglePlayer = true;
 			break;
 		case 3:
+			Utils.isSinglePlayer = true;
+			break;
+		case 4: 
+			Utils.isSinglePlayer = true;
+			break;
+		case 5: 
 			Utils.isSinglePlayer = false;
 			break;
 		default:

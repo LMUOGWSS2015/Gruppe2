@@ -6,6 +6,7 @@ TagManager:
   tags:
   - bullet
   - cube
+  - spot_enemy
   layers:
   - Default
   - TransparentFX
