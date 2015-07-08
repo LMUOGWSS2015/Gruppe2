@@ -8,23 +8,25 @@ public class EnemyHealth : Photon.MonoBehaviour
 	private int hits = 0;
 	private HUD hud;
 	private Material mat;
-	private Utils utils;
+	private NetworkManagerPUN networkManager;
+	private GlobalScore globalScore;
 
 	// Use this for initialization
 	void Start ()
 	{
 		if (health <= 0) {
+
+			globalScore.raiseDeaths(PhotonNetwork.player.ID, 1);
 			Dead ();
 		}
 		hud = gameObject.AddComponent<HUD> ();
-
-		utils = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<Utils> ();
+		networkManager = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<NetworkManagerPUN> ();
+		globalScore = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log ("Health: " + health);
 		if (health <= 0) {
 			Dead ();
 		}
@@ -36,6 +38,7 @@ public class EnemyHealth : Photon.MonoBehaviour
 			Destroy (gameObject);
 		} else {
 			PhotonNetwork.Destroy (gameObject);
+			networkManager.SpawnMyPlayer();
 		}
 		hud.incHits ();
 	}

@@ -210,6 +210,8 @@ GameObject:
   - 4: {fileID: 41072141}
   - 114: {fileID: 41072140}
   - 114: {fileID: 41072142}
+  - 114: {fileID: 41072143}
+  - 114: {fileID: 41072144}
   m_Layer: 0
   m_Name: _GLOBAL_SCRIPTS
   m_TagString: Untagged
@@ -250,6 +252,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7da9a0f6c8af04039a2ae8cbfa2ffce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &41072143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41072139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072cce9e5ae644a16a085c922e8f1c16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &41072144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41072139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ef3094073c741fba59440f077815c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &41836362 stripped
