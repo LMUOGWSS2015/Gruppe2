@@ -19,7 +19,7 @@ public class EnemyHealth : Photon.MonoBehaviour
 			globalScore.raiseDeaths(PhotonNetwork.player.ID, 1);
 			Dead ();
 		}
-		hud = gameObject.AddComponent<HUD> ();
+		//hud = gameObject.AddComponent<HUD> ();
 		networkManager = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<NetworkManagerPUN> ();
 		globalScore = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ();
 	}
@@ -45,7 +45,7 @@ public class EnemyHealth : Photon.MonoBehaviour
 			}
 
 		}
-		hud.incHits ();
+		//hud.incHits ();
 	}
 
 	[PunRPC]
