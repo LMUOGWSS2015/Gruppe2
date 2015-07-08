@@ -24,7 +24,7 @@ public class EnemyHealth : Photon.MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		Debug.Log ("Health: " + health);
+		//Debug.Log ("Health: " + health);
 		if (health <= 0) {
 			Dead ();
 		}

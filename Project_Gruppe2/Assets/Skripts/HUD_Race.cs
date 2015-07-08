@@ -13,7 +13,7 @@ public class HUD_Race : MonoBehaviour
 
 	public float timer = 15.0f;
 
-	dreamloLeaderBoard dl;
+	dreamloLeaderBoard dlRace;
 	
 	bool gameOver;
 	bool displayLeaderBoard;
@@ -24,8 +24,7 @@ public class HUD_Race : MonoBehaviour
 		GameObject timeText = GameObject.Find("TimeText");
 		timerText = (Text)timeText.GetComponent (typeof(Text));
 
-		// get the reference here...
-		this.dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
+		this.dlRace = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
 
 		gameOver = false;
 		displayLeaderBoard = false;
@@ -44,7 +43,7 @@ public class HUD_Race : MonoBehaviour
 		else {
 			// GAME OVER
 			Time.timeScale=0.0f;
-			totalScore = HUD_Race.score;
+			totalScore = score;
 			gameOver = true;
 		}
 	}
@@ -66,7 +65,7 @@ public class HUD_Race : MonoBehaviour
 			Rect r = new Rect ((Screen.width / 2) - (width / 2), (Screen.height / 2) - (height / 2), width, height);
 			GUILayout.BeginArea (r, new GUIStyle ("box"));
 
-			GUILayout.Label ("GAME OVER");
+			GUILayout.Label ("RACE | GAME OVER");
 			GUILayout.Label ("Total Score: " + this.totalScore.ToString ());
 
 			GUILayout.BeginHorizontal ();
@@ -76,13 +75,13 @@ public class HUD_Race : MonoBehaviour
 
 			if(displayLeaderBoard == false){
 				if (GUILayout.Button ("Save Score")) {	
-					dl.AddScore (this.playerName, totalScore);
+					dlRace.AddScore (this.playerName, totalScore);
 					displayLeaderBoard = true;
 				}
 			}
 
 			if (displayLeaderBoard == true) {
-				List<dreamloLeaderBoard.Score> scoreList = dl.ToListHighToLow();
+				List<dreamloLeaderBoard.Score> scoreList = dlRace.ToListHighToLow();
 				if (scoreList == null) 
 				{
 					GUILayout.Label("(loading...)");

@@ -10,8 +10,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Drone in City.unity
   - enabled: 1
+    path: Assets/Scenes/LeaderBoardShooterScene.unity
+  - enabled: 1
     path: Assets/Scenes/RaceScene.unity
   - enabled: 1
-    path: Assets/Scenes/Drone in City Multiplayer.unity
+    path: Assets/Scenes/LeaderBoardRaceScene.unity
   - enabled: 1
+    path: Assets/Scenes/Drone in City Multiplayer.unity
+  - enabled: 0
     path: Assets/Scenes/Highscores_Scene.unity
