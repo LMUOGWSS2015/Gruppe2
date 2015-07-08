@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class HUD_Race : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class HUD_Race : MonoBehaviour
 	dreamloLeaderBoard dl;
 	
 	bool gameOver;
+	bool displayLeaderBoard;
 
 	// Use this for initialization
 	void Start ()
@@ -26,6 +28,7 @@ public class HUD_Race : MonoBehaviour
 		this.dl = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
 
 		gameOver = false;
+		displayLeaderBoard = false;
 	}
 	
 	// Update is called once per frame
@@ -66,14 +69,32 @@ public class HUD_Race : MonoBehaviour
 			GUILayout.Label ("GAME OVER");
 			GUILayout.Label ("Total Score: " + this.totalScore.ToString ());
 
-
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label ("Your Name: ");
 			this.playerName = GUILayout.TextField (this.playerName);
 			GUILayout.EndHorizontal ();
-			if (GUILayout.Button ("Save score and go back to Main-Menu")) {	
-				dl.AddScore (this.playerName, totalScore);
-				Application.LoadLevel (0);
+
+			if(displayLeaderBoard == false){
+				if (GUILayout.Button ("Save Score")) {	
+					dl.AddScore (this.playerName, totalScore);
+					displayLeaderBoard = true;
+				}
+			}
+
+			if (displayLeaderBoard == true) {
+				List<dreamloLeaderBoard.Score> scoreList = dl.ToListHighToLow();
+				if (scoreList == null) 
+				{
+					GUILayout.Label("(loading...)");
+				} 
+				else 
+				{
+					if (GUILayout.Button("Back to Main-Menu"))
+					{
+						Application.LoadLevel (0);
+					}
+				}
+
 			}
 
 			GUILayout.EndArea ();
