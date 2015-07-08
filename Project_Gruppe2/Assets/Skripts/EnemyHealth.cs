@@ -38,7 +38,12 @@ public class EnemyHealth : Photon.MonoBehaviour
 			Destroy (gameObject);
 		} else {
 			PhotonNetwork.Destroy (gameObject);
-			networkManager.SpawnMyPlayer();
+			if(Utils.isSinglePlayer){
+				networkManager.SpawnEnemys();
+			}else{
+				networkManager.SpawnMyPlayer();
+			}
+
 		}
 		hud.incHits ();
 	}
