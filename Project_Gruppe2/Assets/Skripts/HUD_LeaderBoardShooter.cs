@@ -28,9 +28,12 @@ public class HUD_LeaderBoardShooter : MonoBehaviour {
 
 			List<dreamloLeaderBoard.Score> scoreList = dlLeaderBoardShooter.ToListHighToLow();
 
-			if (scoreList.Count == null) {
-				GUILayout.Label ("(loading...)");
-			} else {
+			if (scoreList == null) {
+				GUILayout.Label ("LOADING ...");
+			} else if (scoreList.Count == 0) {
+				GUILayout.Label ("NO HIGHSCORES YET!");
+			}
+			else {
 				int maxToDisplay = 10;
 				int count = 0;
 				foreach (dreamloLeaderBoard.Score currentScore in scoreList) {
