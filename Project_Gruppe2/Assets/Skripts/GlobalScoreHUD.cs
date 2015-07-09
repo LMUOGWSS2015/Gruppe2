@@ -45,7 +45,7 @@ public class GlobalScoreHUD : MonoBehaviour {
 			GUILayout.Label ("NAME");
 			GUILayout.Label (player.name);
 			GUILayout.Label ("KILLS");
-			GUILayout.Label (player.customProperties["deaths"].ToString());
+			GUILayout.Label (player.customProperties["kills"].ToString());
 			GUILayout.Label ("DEATHS");
 			GUILayout.Label (player.customProperties["deaths"].ToString());
 			GUILayout.Label ("SCORE");

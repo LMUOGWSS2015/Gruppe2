@@ -119,7 +119,7 @@ public class NetworkManagerPUN : MonoBehaviour
 		GameObject myPlayer = (GameObject)PhotonNetwork.Instantiate ("Player", Vector3.zero, Quaternion.identity, 0);
 
 		// set player custom properties for global scoreboard
-		ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable() {{"deaths", 0}, {"kills", 0}};
+		ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable() {{"deaths", "10"}, {"kills", "3"}};
 		PhotonNetwork.player.SetCustomProperties(someCustomPropertiesToSet);
 		// enable everything which sould only run once per instance
 		myPlayer.GetComponent<RaycastShooting> ().enabled = true;
