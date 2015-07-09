@@ -33,14 +33,14 @@ public class FlyController : MonoBehaviour {
 			GoDown();
 		}
 		
-		// links drehen
+		// neigung links
 		if (Input.GetKey (KeyCode.A)) {
-			RotateLeft();
+			GoLeft(1f);
 		}
 		
-		// rechts drehen
+		// neigung rechts
 		if (Input.GetKey (KeyCode.D)) {
-			RotateRight();
+			GoRight(-1f);
 		}
 		
 		// neigung vor
@@ -53,14 +53,14 @@ public class FlyController : MonoBehaviour {
 			GoBack(-1f);
 		}
 		
-		// neigung links
+		// drehung links
 		if (Input.GetKey (KeyCode.LeftArrow)) {
-			GoLeft(1f);
+			RotateLeft();
 		} 
 		
-		// neigung rechts
+		// drehung rechts
 		if (Input.GetKey (KeyCode.RightArrow)) {
-			GoRight(-1f);
+			RotateRight();
 		}
 		
 		//////////////////////
@@ -78,14 +78,14 @@ public class FlyController : MonoBehaviour {
 			GoDown();
 		}
 		
-		// links drehen
+		// neigung links
 		if (Input.GetAxis ("Horizontal") > controllerSensitivity) {
-			RotateLeft();
+			GoLeft(Input.GetAxis ("Horizontal2"));
 		}
 		
-		// rechts drehen
+		// neigung rechts
 		if (Input.GetAxis ("Horizontal") < -controllerSensitivity) {
-			RotateRight();
+			GoRight(Input.GetAxis ("Horizontal2"));
 		}
 		
 		// neigung vor
@@ -98,14 +98,14 @@ public class FlyController : MonoBehaviour {
 			GoBack(Input.GetAxis ("Vertical2"));
 		}
 		
-		// neigung links
+		// drehung links
 		if (Input.GetAxis ("Horizontal2") > controllerSensitivity) {
-			GoLeft(Input.GetAxis ("Horizontal2"));
+			RotateLeft();
 		}
 		
-		// neigung rechts
+		// drehung rechts
 		if (Input.GetAxis ("Horizontal2") < -controllerSensitivity) {
-			GoRight(Input.GetAxis ("Horizontal2"));
+			RotateRight();
 		}
 		
 		// KEINE EINGABE ERKANNT

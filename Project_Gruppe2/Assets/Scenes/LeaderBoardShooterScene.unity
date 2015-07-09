@@ -583,7 +583,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1917330394}
-        m_MethodName: BackToMainMenuClick
+        m_MethodName: ChangeToScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -699,8 +699,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1917330395}
-  - 114: {fileID: 1917330394}
   - 82: {fileID: 1917330396}
+  - 114: {fileID: 1917330394}
   m_Layer: 0
   m_Name: _MenuManager
   m_TagString: Untagged
@@ -716,7 +716,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1917330393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9777764daeefb5b499e553a43b49ef53, type: 3}
+  m_Script: {fileID: 11500000, guid: ed107f18ac2364b92862c61bd2797cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1917330395

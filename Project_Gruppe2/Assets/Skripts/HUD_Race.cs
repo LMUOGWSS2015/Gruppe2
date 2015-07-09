@@ -93,7 +93,7 @@ public class HUD_Race : MonoBehaviour
 			GUILayout.Label ("RACE | PAUSE");
 			if (GUILayout.Button("Back to Main-Menu"))
 			{
-				Application.LoadLevel (0);
+				GoBackToMainMenu();
 			}
 			GUILayout.EndArea ();
 		}
@@ -130,7 +130,7 @@ public class HUD_Race : MonoBehaviour
 				{
 					if (GUILayout.Button("Back to Main-Menu"))
 					{
-						Application.LoadLevel (0);
+						GoBackToMainMenu();
 					}
 				}
 
@@ -138,5 +138,10 @@ public class HUD_Race : MonoBehaviour
 
 			GUILayout.EndArea ();
 		}
+	}
+
+	public void GoBackToMainMenu(){
+		Menu2 menuManager = GameObject.Find("_MenuManager").GetComponent<Menu2>();
+		menuManager.ChangeToScene(0);
 	}
 }

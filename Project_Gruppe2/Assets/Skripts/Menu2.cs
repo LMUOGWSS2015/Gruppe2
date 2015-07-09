@@ -7,6 +7,9 @@ public class Menu2 : MonoBehaviour {
 	public void ChangeToScene (int sceneToChangeTo) {
 		switch (sceneToChangeTo)
 		{
+		case 0:
+			Utils.enableEyeTracking = false;
+			break;
 		case 1:
 			Utils.isSinglePlayer = true;
 			break;
