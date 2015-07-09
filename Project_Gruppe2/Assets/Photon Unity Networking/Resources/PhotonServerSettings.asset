@@ -29,4 +29,12 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupTimes
   - ApplyDamage
+  - AddPlayer
+  - raiseDeaths
+  - raiseKills
+  - removePlayer
+  - RaiseDeaths
+  - RaiseKills
+  - RemovePlayer
+  - RefreshData
   DisableAutoOpenWizard: 1

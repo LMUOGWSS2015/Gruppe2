@@ -118,7 +118,8 @@ public class RaycastShooting : GazeMonobehaviour
 				GameObject particleClone = utils.CustomInstantiate ("Particle System", hit);
 				Destroy (particleClone, 2);
 				Debug.Log (hit.transform.tag);
-				if (hit.transform.tag == "Player") {
+				string myTag = Utils.isSinglePlayer ? "cube":"Player";
+				if (hit.transform.tag == myTag) {
 					if (isSinglePlayer) {
 						hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
 					} else {

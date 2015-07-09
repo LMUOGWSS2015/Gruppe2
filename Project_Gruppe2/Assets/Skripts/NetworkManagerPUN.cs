@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NetworkManagerPUN : MonoBehaviour
 {
@@ -73,7 +74,12 @@ public class NetworkManagerPUN : MonoBehaviour
 	void OnJoinedRoom ()
 	{
 		showMenu = false;
-		globalScore.AddPlayer (PhotonNetwork.player.ID, PhotonNetwork.player.name);
+//		if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
+//			Debug.LogError ("Photon View not available!");
+//		} else {
+//			GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> ().RPC ("AddPlayer", PhotonTargets.All, PhotonNetwork.player.ID, PhotonNetwork.player.name);
+//		}
+		//globalScore.AddPlayer (PhotonNetwork.player.ID, PhotonNetwork.player.name);
 		Debug.Log ("OnJoinedRoom");
 		SpawnMyPlayer ();
 		if (failed) {
@@ -108,6 +114,9 @@ public class NetworkManagerPUN : MonoBehaviour
 		//instantiate a client/ player
 		GameObject myPlayer = (GameObject)PhotonNetwork.Instantiate ("Player", Vector3.zero, Quaternion.identity, 0);
 
+		// set player custom properties for global scoreboard
+		ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable() {{"deaths", 0}, {"kills", 0}};
+		PhotonNetwork.player.SetCustomProperties(someCustomPropertiesToSet);
 		// enable everything which sould only run once per instance
 		myPlayer.GetComponent<RaycastShooting> ().enabled = true;
 		myPlayer.GetComponent<FlyController> ().enabled = true;

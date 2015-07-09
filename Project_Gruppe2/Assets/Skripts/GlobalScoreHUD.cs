@@ -31,12 +31,25 @@ public class GlobalScoreHUD : MonoBehaviour {
 		GUILayout.Label ("SCOREBOARD");
 		
 		
-		foreach(KeyValuePair<int, PlayerModel> player in GlobalScore.players){
+//		foreach(PlayerModel player in GlobalScore.players.Values){
+//			GUILayout.BeginHorizontal ();
+//			GUILayout.Label ("NAME");
+//			GUILayout.Label (player.getPlayerName());
+//			GUILayout.Label ("DEATHS");
+//			GUILayout.Label (player.getDeaths().ToString());
+//			GUILayout.EndHorizontal ();
+//		}
+
+		foreach(PhotonPlayer player in PhotonNetwork.playerList){
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label ("NAME");
-			GUILayout.Label (player.Value.getPlayerName());
+			GUILayout.Label (player.name);
+			GUILayout.Label ("KILLS");
+			GUILayout.Label (player.customProperties["deaths"].ToString());
 			GUILayout.Label ("DEATHS");
-			GUILayout.Label (player.Value.getDeaths().ToString());
+			GUILayout.Label (player.customProperties["deaths"].ToString());
+			GUILayout.Label ("SCORE");
+			GUILayout.Label (player.GetScore().ToString());
 			GUILayout.EndHorizontal ();
 		}
 		GUILayout.EndArea ();

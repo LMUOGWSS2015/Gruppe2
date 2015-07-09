@@ -16,8 +16,13 @@ public class EnemyHealth : Photon.MonoBehaviour
 	{
 		if (health <= 0) {
 
-			globalScore.raiseDeaths(PhotonNetwork.player.ID, 1);
-			Dead ();
+//			if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
+//				Debug.LogError ("Photon View not available!");
+//			} else {
+//				GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> ().RPC ("RaiseDeaths", PhotonTargets.All, PhotonNetwork.player.ID);
+//			}
+		
+			//Dead ();
 		}
 		//hud = gameObject.AddComponent<HUD> ();
 		networkManager = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<NetworkManagerPUN> ();
@@ -28,6 +33,8 @@ public class EnemyHealth : Photon.MonoBehaviour
 	void Update ()
 	{
 		if (health <= 0) {
+
+			PhotonNetwork.player.customProperties["deaths"] = (int) PhotonNetwork.player.customProperties["deaths"] + 1;
 			Dead ();
 		}
 	}
