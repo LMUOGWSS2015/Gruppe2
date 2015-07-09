@@ -96,7 +96,11 @@ public class NetworkManagerPUN : MonoBehaviour
 			indexEnemys.Add (rand);
 
 			SpawnSpotEnemy myEnemy = spawnSpots [rand];
-			PhotonNetwork.Instantiate ("Sphere 1", myEnemy.transform.position, myEnemy.transform.rotation, 0);
+
+			GameObject myResource = (GameObject)Resources.Load ("Sphere 1", typeof(GameObject));
+			Instantiate (myResource, myEnemy.transform.position, myEnemy.transform.rotation);
+
+			//PhotonNetwork.Instantiate ("Sphere 1", myEnemy.transform.position, myEnemy.transform.rotation, 0);
 		}
 
 	}
