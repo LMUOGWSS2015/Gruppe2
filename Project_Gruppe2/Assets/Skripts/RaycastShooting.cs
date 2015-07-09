@@ -73,22 +73,21 @@ public class RaycastShooting : GazeMonobehaviour
 	
 		// player shoots
 		if (Input.GetButtonDown ("Fire1")) {
+
+			int layerMask = 1 << 8;
+			
+			// Does the ray intersect any objects which are in the player layer.
+			if (Physics.Raycast(transform.position, Vector3.forward, Mathf.Infinity, layerMask))
+				Debug.Log("The ray hit the player");
+
+			Debug.Log ("Fire Button Pressed!");
 			// show light
 			GameObject.Find ("QuadCopter").GetComponent<LightControl> ().shootLight ();
 
 			// play fire sound when fire button is pressed
 			fireSource.PlayOneShot (fireSound, 1);
-
 			if (Physics.Raycast (ray, out hit, 100)) {
-				//Rigidbody instantiatedProjectile = Instantiate (projectile, transform.position, transform.rotation) as Rigidbody;
-				//instantiatedProjectile.velocity = (hit.point - transform.position).normalized * 300;
-				//Destroy (instantiatedProjectile.gameObject, 3);
-
-				//instantiatedProjectile.velocity = (hit.point - transform.position).normalized * 500;
-				//instantiatedProjectile.rotation = Quaternion.LookRotation(instantiatedProjectile.velocity);
-
-				//GameObject newBall = Instantiate(ball, transform.position, transform.rotation) as GameObject;
-				//newBall.rigidbody.velocity = (hit.point - transform.position).normalized * speed;
+				Debug.Log ("Raycast hit!");
 
 				// bullet hole
 				GameObject bulletHoleClone = utils.CustomInstantiate ("BulletHole", hit);
@@ -105,22 +104,33 @@ public class RaycastShooting : GazeMonobehaviour
 				GameObject fireClone = utils.CustomInstantiate ("FireMobile", hit);
 				Destroy (fireClone, 5);
 
+				// if we hit a cube, add bullet hole and fire clone to cube object
 				if (hit.transform.tag == "cube") {
 					bulletHoleClone.transform.parent = hit.transform;
 					fireClone.transform.parent = hit.transform;
-				} else {
+				} 
+				// if we hit something else, destroy bullethole after 15 seconds
+				else {
 					Destroy (bulletHoleClone.gameObject, 15);
 				}
 
 				// particle filter effect
 				GameObject particleClone = utils.CustomInstantiate ("Particle System", hit);
 				Destroy (particleClone, 2);
-
-				if (isSinglePlayer) {
-					hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
-				} else {
-//					enemyHealth.ApplyDamage (theDamage);
-					hit.transform.GetComponent<PhotonView> ().RPC ("ApplyDamage", PhotonTargets.All, theDamage);
+				Debug.Log (hit.transform.tag);
+				string myTag = Utils.isSinglePlayer ? "cube":"Player";
+				if (hit.transform.tag == myTag) {
+					if (isSinglePlayer) {
+						hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
+					} else {
+						if (hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> () == null) {
+							Debug.LogError ("Photon View not available!");
+						} else {
+							hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> ().RPC ("ApplyDamage", PhotonTargets.All, theDamage);
+							Debug.Log ("Multiplayer apply damage!");
+						}
+						
+					}
 				}
 			}
 		}

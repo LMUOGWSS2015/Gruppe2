@@ -8,24 +8,33 @@ public class EnemyHealth : Photon.MonoBehaviour
 	private int hits = 0;
 	private HUD hud;
 	private Material mat;
-	private Utils utils;
+	private NetworkManagerPUN networkManager;
+	private GlobalScore globalScore;
 
 	// Use this for initialization
 	void Start ()
 	{
 		if (health <= 0) {
-			Dead ();
-		}
-		hud = gameObject.AddComponent<HUD> ();
 
-		utils = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<Utils> ();
+//			if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
+//				Debug.LogError ("Photon View not available!");
+//			} else {
+//				GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> ().RPC ("RaiseDeaths", PhotonTargets.All, PhotonNetwork.player.ID);
+//			}
+		
+			//Dead ();
+		}
+		//hud = gameObject.AddComponent<HUD> ();
+		networkManager = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<NetworkManagerPUN> ();
+		globalScore = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		//Debug.Log ("Health: " + health);
 		if (health <= 0) {
+
+			PhotonNetwork.player.customProperties["deaths"] = (int) PhotonNetwork.player.customProperties["deaths"] + 1;
 			Dead ();
 		}
 	}
@@ -36,8 +45,14 @@ public class EnemyHealth : Photon.MonoBehaviour
 			Destroy (gameObject);
 		} else {
 			PhotonNetwork.Destroy (gameObject);
+			if(Utils.isSinglePlayer){
+				networkManager.SpawnEnemys();
+			}else{
+				networkManager.SpawnMyPlayer();
+			}
+
 		}
-		hud.incHits ();
+		//hud.incHits ();
 	}
 
 	[PunRPC]
