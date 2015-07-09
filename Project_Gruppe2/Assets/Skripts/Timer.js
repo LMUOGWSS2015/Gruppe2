@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-var timer : float = 5.0;
+var timer : float;
 //var counter : Rect = new Rect(Screen.width/2-300, Screen.height/2-150, 100, 100);
 	
 var font : Font;
@@ -10,6 +10,11 @@ myStyle.alignment = TextAnchor.MiddleCenter;
 myStyle.fontSize = 200;
 myStyle.font = font;
 //myStyle.font = font;	
+ 	
+ 	
+function Start() {
+	timer = 5.0;
+} 	
  	
 function Update() {
 if(timer > 0.0){
