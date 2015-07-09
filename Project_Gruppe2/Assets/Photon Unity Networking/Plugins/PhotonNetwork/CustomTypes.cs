@@ -35,7 +35,6 @@ internal static class CustomTypes
         PhotonPeer.RegisterType(typeof(Vector3), (byte)'V', SerializeVector3, DeserializeVector3);
         PhotonPeer.RegisterType(typeof(Quaternion), (byte)'Q', SerializeQuaternion, DeserializeQuaternion);
         PhotonPeer.RegisterType(typeof(PhotonPlayer), (byte)'P', SerializePhotonPlayer, DeserializePhotonPlayer);
-		PhotonPeer.RegisterType(typeof(PlayerModel), (byte)'X', SerializePlayerModel, DeserializePlayerModel);
     }
 
 
@@ -177,42 +176,6 @@ internal static class CustomTypes
             return null;
         }
     }
-
-
-	public static readonly byte[] memPlayerModel = new byte[4];
-	private static short SerializePlayerModel(MemoryStream outStream, object customobject)
-	{
-		int ID = ((PlayerModel)customobject).getPlayerId();
-		
-		lock (memPlayerModel)
-		{
-			byte[] bytes = memPlayerModel;
-			int off = 0;
-			Protocol.Serialize(ID, bytes, ref off);
-			outStream.Write(bytes, 0, 4);
-			return 4;
-		}
-	}
-	
-	private static object DeserializePlayerModel(MemoryStream inStream, short length)
-	{
-		int ID;
-		lock (memPlayerModel)
-		{
-			inStream.Read(memPlayerModel, 0, length);
-			int off = 0;
-			Protocol.Deserialize(out ID, memPlayerModel, ref off);
-		}
-		
-		if (PhotonNetwork.networkingPeer.mActors.ContainsKey(ID))
-		{
-			return PhotonNetwork.networkingPeer.mActors[ID];
-		}
-		else
-		{
-			return null;
-		}
-	}
 
     #endregion
 }

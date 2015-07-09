@@ -12,6 +12,7 @@ public class NetworkManagerPUN : MonoBehaviour
 	private bool showMenu = false;
 	private GlobalScore globalScore;
 
+	private bool respawn = false;
 
 	// Use this for initialization
 	void Start ()
@@ -119,8 +120,11 @@ public class NetworkManagerPUN : MonoBehaviour
 		GameObject myPlayer = (GameObject)PhotonNetwork.Instantiate ("Player", Vector3.zero, Quaternion.identity, 0);
 
 		// set player custom properties for global scoreboard
-		ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable() {{"deaths", "10"}, {"kills", "3"}};
-		PhotonNetwork.player.SetCustomProperties(someCustomPropertiesToSet);
+		if (respawn == false) {
+			ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable() {{"deaths", "0"}, {"kills", "0"}};
+			PhotonNetwork.player.SetCustomProperties(someCustomPropertiesToSet);
+		}
+	
 		// enable everything which sould only run once per instance
 		myPlayer.GetComponent<RaycastShooting> ().enabled = true;
 		myPlayer.GetComponent<FlyController> ().enabled = true;
@@ -140,6 +144,8 @@ public class NetworkManagerPUN : MonoBehaviour
 		// disable standby camera when game starts
 		standbyCamera.SetActive (false);
 		standbyCamera.GetComponent<AudioListener> ().enabled = false;
+
+		respawn = true;
 	}
 
 	void drawMenu ()

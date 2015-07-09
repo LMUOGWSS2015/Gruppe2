@@ -19,11 +19,16 @@ public class EnemyHealth : Photon.MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update (){
-
-		if (health <= 0) {
-			int deaths = int.Parse(PhotonNetwork.player.customProperties["deaths"].ToString()) + 1;
-			PhotonNetwork.player.customProperties["deaths"] =  deaths.ToString();
+	void Update ()
+	{
+		if (isAlive () == false) {
+			if (Utils.isSinglePlayer == false) {
+				Debug.Log ("Is Dead!");
+				int deaths = int.Parse (PhotonNetwork.player.customProperties ["deaths"].ToString ()) + 1;
+				ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable() {{"deaths", deaths.ToString()}};
+				PhotonNetwork.player.SetCustomProperties(someCustomPropertiesToSet);
+				Debug.Log("deaths: " + PhotonNetwork.player.customProperties ["deaths"]);
+			}
 			Dead ();
 		}
 	}
@@ -34,10 +39,11 @@ public class EnemyHealth : Photon.MonoBehaviour
 			Destroy (gameObject);
 		} else {
 			PhotonNetwork.Destroy (gameObject);
-			if(Utils.isSinglePlayer){
-				networkManager.SpawnEnemys();
-			}else{
-				networkManager.SpawnMyPlayer();
+			if (Utils.isSinglePlayer) {
+				networkManager.SpawnEnemys ();
+			} else {
+				networkManager.SpawnMyPlayer ();
+				health = 100;
 			}
 
 		}
@@ -45,11 +51,29 @@ public class EnemyHealth : Photon.MonoBehaviour
 	}
 
 	[PunRPC]
-	public void ApplyDamage (int theDamage)
+	public void ApplyDamage (int theDamage, int playerId)
 	{
 		Debug.Log ("ApplyDamage: " + theDamage);
 		hits += 1;
 		health -= theDamage;
 
+		if (isAlive () == false) {
+			Debug.Log("I am dead...");
+			if (GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>() == null) {
+				Debug.LogError ("Photon View not available!");
+			} else {
+				Debug.Log("and raise kills");
+				GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>().RPC ("RaiseKills", PhotonTargets.All, playerId);
+			}
+		}
+	}
+
+	bool isAlive ()
+	{
+		if (health <= 0) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 }
