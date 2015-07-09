@@ -35,7 +35,7 @@ public class HUD : MonoBehaviour
 		timerText = (Text)timeText.GetComponent (typeof(Text));
 
 		playerName = "";
-		timer = 15.0f;
+		timer = 180.0f;
 		score = 0;
 		totalScore = 0;
 
@@ -91,7 +91,7 @@ public class HUD : MonoBehaviour
 			GUILayout.Label ("SHOOTER | PAUSE");
 			if (GUILayout.Button("Back to Main-Menu"))
 			{
-				Application.LoadLevel (0);
+				GoBackToMainMenu();
 			}
 			GUILayout.EndArea ();
 		}
@@ -123,12 +123,17 @@ public class HUD : MonoBehaviour
 				{
 					if (GUILayout.Button("Back to Main-Menu"))
 					{
-						Application.LoadLevel (0);
+						GoBackToMainMenu();
 					}
 				}
 				
 			}
 			GUILayout.EndArea ();
 		}
-	}	
+	}
+
+	public void GoBackToMainMenu(){
+		Menu2 menuManager = GameObject.Find("_MenuManager").GetComponent<Menu2>();
+		menuManager.ChangeToScene(0);
+	}
 }

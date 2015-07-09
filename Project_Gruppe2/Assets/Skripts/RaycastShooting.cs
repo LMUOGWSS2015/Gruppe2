@@ -42,9 +42,7 @@ public class RaycastShooting : GazeMonobehaviour
 	// Update is called once per frame
 	void Update ()
 	{	
-		// only use eye tracker on windows -> TODO: should only be used when eye tracker is connected
-		if (Application.platform == RuntimePlatform.WindowsPlayer) {
-
+		if(Utils.enableEyeTracking){
 			// eye tracking
 			gazeX = iView.SMIGazeController.Instance.GetSample ().averagedEye.gazePosInUnityScreenCoords ().x;
 			gazeY = iView.SMIGazeController.Instance.GetSample ().averagedEye.gazePosInUnityScreenCoords ().y;
@@ -64,9 +62,13 @@ public class RaycastShooting : GazeMonobehaviour
 			
 			Vector3 gazePosition = new Vector3 (gazeX, gazeY, 0);
 			ray = Camera.main.ScreenPointToRay (gazePosition);
-		} else {
-			ray = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
+		}
+		else{
 			crosshairRect = new Rect (Screen.width / 2 - crosshairSize / 2, Screen.height / 2 - crosshairSize / 2, crosshairSize, crosshairSize);
+			gazeX = Screen.width / 2;
+			gazeY = Screen.height / 2;
+			Vector3 gazePosition = new Vector3 (gazeX, gazeY, 0);
+			ray = Camera.main.ScreenPointToRay (gazePosition);
 		}
 
 
