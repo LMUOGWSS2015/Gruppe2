@@ -411,6 +411,7 @@ GameObject:
   - 114: {fileID: 41072143}
   - 114: {fileID: 41072144}
   - 114: {fileID: 41072145}
+  - 114: {fileID: 41072146}
   m_Layer: 0
   m_Name: _GLOBAL_SCRIPTS
   m_TagString: Untagged
@@ -499,6 +500,17 @@ MonoBehaviour:
   viewIdField: 1
   instantiationId: 1
   isRuntimeInstantiated: 0
+--- !u!114 &41072146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 41072139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b5469ed78754e1c8ae338d4d68fe24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &41836362 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100078, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}

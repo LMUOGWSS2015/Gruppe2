@@ -11,7 +11,7 @@ public class NetworkManagerPUN : MonoBehaviour
 	private bool failed;
 	private bool showMenu = false;
 	private GlobalScore globalScore;
-
+	private GameInfoBox gameInfoBox;
 	private bool respawn = false;
 
 	// Use this for initialization
@@ -19,6 +19,7 @@ public class NetworkManagerPUN : MonoBehaviour
 	{
 		Connect ();
 		globalScore = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ();
+		gameInfoBox = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GameInfoBox> ();
 	}
 	
 	void Connect ()
@@ -37,7 +38,7 @@ public class NetworkManagerPUN : MonoBehaviour
 	string maxPlayers = "";
 	string gameName = "";
 	int menuNumber = 0;
-	
+
 	void OnGUI ()
 	{
 		GUILayout.Label (PhotonNetwork.connectionStateDetailed.ToString ());
@@ -45,14 +46,22 @@ public class NetworkManagerPUN : MonoBehaviour
 		if (showMenu) {
 			drawMenu ();
 		}
+	}
 
+	void OnPhotonPlayerConnected (PhotonPlayer player)
+	{
+		GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, player.name, "", "connect"));
+	}
+
+	public void OnPhotonPlayerDisconnected (PhotonPlayer player)
+	{    
+		GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, player.name, "", "disconnect"));
 	}
 
 	void Update ()
 	{
-
-
-		if (Input.GetKey (KeyCode.Escape)) {
+		// toggle pause menu when pressing escape
+		if (Input.GetKeyUp (KeyCode.Escape)) {
 			menuNumber = 2;
 			showMenu = !showMenu;
 		}
@@ -61,13 +70,11 @@ public class NetworkManagerPUN : MonoBehaviour
 
 	void OnJoinedLobby ()
 	{
-		Debug.Log ("OnJoinedLobby");
 		showMenu = true;
 	}
 
 	void OnPhotonRandomJoinFailed ()
 	{
-		Debug.Log ("OnPhotonRandomJoinFailed");
 		PhotonNetwork.CreateRoom (null);
 		failed = true;
 	}
@@ -75,13 +82,6 @@ public class NetworkManagerPUN : MonoBehaviour
 	void OnJoinedRoom ()
 	{
 		showMenu = false;
-//		if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
-//			Debug.LogError ("Photon View not available!");
-//		} else {
-//			GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> ().RPC ("AddPlayer", PhotonTargets.All, PhotonNetwork.player.ID, PhotonNetwork.player.name);
-//		}
-		//globalScore.AddPlayer (PhotonNetwork.player.ID, PhotonNetwork.player.name);
-		Debug.Log ("OnJoinedRoom");
 		SpawnMyPlayer ();
 		if (failed) {
 			SpawnEnemys ();
@@ -90,9 +90,7 @@ public class NetworkManagerPUN : MonoBehaviour
 
 	public void SpawnEnemys ()
 	{
-		Debug.Log ("SpawnEnemys");
 		SpawnSpotEnemy[] spawnSpots = GameObject.FindObjectsOfType<SpawnSpotEnemy> ();
-		Debug.Log (spawnSpots.Length);
 
 		for (int i=0; i<numberEnemys; i++) {
 
@@ -106,23 +104,19 @@ public class NetworkManagerPUN : MonoBehaviour
 
 			GameObject myResource = (GameObject)Resources.Load ("Sphere 1", typeof(GameObject));
 			Instantiate (myResource, myEnemy.transform.position, myEnemy.transform.rotation);
-
-			//PhotonNetwork.Instantiate ("Sphere 1", myEnemy.transform.position, myEnemy.transform.rotation, 0);
 		}
 
 	}
 
 	public void SpawnMyPlayer ()
 	{
-		Debug.Log ("SpawnMyPlayer");
-
 		//instantiate a client/ player
 		GameObject myPlayer = (GameObject)PhotonNetwork.Instantiate ("Player", Vector3.zero, Quaternion.identity, 0);
 
 		// set player custom properties for global scoreboard
 		if (respawn == false) {
-			ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable() {{"deaths", "0"}, {"kills", "0"}};
-			PhotonNetwork.player.SetCustomProperties(someCustomPropertiesToSet);
+			ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable () {{"deaths", "0"}, {"kills", "0"}};
+			PhotonNetwork.player.SetCustomProperties (someCustomPropertiesToSet);
 		}
 	
 		// enable everything which sould only run once per instance
@@ -174,7 +168,7 @@ public class NetworkManagerPUN : MonoBehaviour
 		GUILayout.Label ("MULTIPLAYER MENU");
 		
 		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("Please enter username");
+		GUILayout.Label ("USERNAME");
 		playerName = GUILayout.TextField (playerName);
 		GUILayout.EndHorizontal ();
 		
@@ -187,9 +181,10 @@ public class NetworkManagerPUN : MonoBehaviour
 		
 		GUILayout.Label ("OPEN GAMES");
 		RoomInfo[] rooms = PhotonNetwork.GetRoomList ();
-		//string[] rooms = new string[] {"HALLO", "WAS GEHT"};
+	
 		foreach (RoomInfo room in rooms) {
 			if (GUILayout.Button (room.name)) {
+				PhotonNetwork.playerName = playerName;
 				PhotonNetwork.JoinRoom (room.name);
 			}
 		}

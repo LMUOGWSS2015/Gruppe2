@@ -128,7 +128,7 @@ public class RaycastShooting : GazeMonobehaviour
 						if (hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> () == null) {
 							Debug.LogError ("Photon View not available!");
 						} else {
-							hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> ().RPC ("ApplyDamage", PhotonTargets.All, theDamage, PhotonNetwork.player.ID);
+							hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> ().RPC ("ApplyDamage", PhotonTargets.All, theDamage, PhotonNetwork.player);
 						}
 						
 					}

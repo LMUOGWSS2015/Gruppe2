@@ -51,19 +51,20 @@ public class EnemyHealth : Photon.MonoBehaviour
 	}
 
 	[PunRPC]
-	public void ApplyDamage (int theDamage, int playerId)
+	public void ApplyDamage (int theDamage, PhotonPlayer player)
 	{
-		Debug.Log ("ApplyDamage: " + theDamage);
 		hits += 1;
 		health -= theDamage;
 
 		if (isAlive () == false) {
-			Debug.Log("I am dead...");
 			if (GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>() == null) {
 				Debug.LogError ("Photon View not available!");
 			} else {
+				Debug.Log("Player SHOOT - ID: " + player.ID + "-NAME: " + player.name);
+				Debug.Log("Player HIT - ID: " + PhotonNetwork.player.ID + "-NAME: " + PhotonNetwork.player.name);
+				GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, player.name, PhotonNetwork.player.name, "kill"));
 				Debug.Log("and raise kills");
-				GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>().RPC ("RaiseKills", PhotonTargets.All, playerId);
+				GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>().RPC ("RaiseKills", PhotonTargets.All, player.ID);
 			}
 		}
 	}
