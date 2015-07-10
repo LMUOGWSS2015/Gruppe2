@@ -9,9 +9,10 @@ public class NetworkManagerPUN : MonoBehaviour
 	private int numberEnemys = 40;
 	private ArrayList indexEnemys = new ArrayList ();
 	private bool failed;
-	private bool showMenu = false;
+
 	private GlobalScore globalScore;
 	private GameInfoBox gameInfoBox;
+	private MultiplayerGameLobby mpGameLobby;
 	private bool respawn = false;
 
 	// Use this for initialization
@@ -20,6 +21,7 @@ public class NetworkManagerPUN : MonoBehaviour
 		Connect ();
 		globalScore = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ();
 		gameInfoBox = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GameInfoBox> ();
+		mpGameLobby = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<MultiplayerGameLobby> ();
 	}
 	
 	void Connect ()
@@ -32,20 +34,9 @@ public class NetworkManagerPUN : MonoBehaviour
 		}
 	}
 
-	float rectWidth = 800;
-	float rectHeight = 500;
-	string playerName = "";
-	string maxPlayers = "";
-	string gameName = "";
-	int menuNumber = 0;
-
 	void OnGUI ()
 	{
 		GUILayout.Label (PhotonNetwork.connectionStateDetailed.ToString ());
-
-		if (showMenu) {
-			drawMenu ();
-		}
 	}
 
 	void OnPhotonPlayerConnected (PhotonPlayer player)
@@ -60,17 +51,12 @@ public class NetworkManagerPUN : MonoBehaviour
 
 	void Update ()
 	{
-		// toggle pause menu when pressing escape
-		if (Input.GetKeyUp (KeyCode.Escape)) {
-			menuNumber = 2;
-			showMenu = !showMenu;
-		}
 
 	}
 
 	void OnJoinedLobby ()
 	{
-		showMenu = true;
+		MultiplayerGameLobby.showLobby = true;
 	}
 
 	void OnPhotonRandomJoinFailed ()
@@ -81,7 +67,7 @@ public class NetworkManagerPUN : MonoBehaviour
 
 	void OnJoinedRoom ()
 	{
-		showMenu = false;
+		MultiplayerGameLobby.showLobby = false;
 		SpawnMyPlayer ();
 		if (failed) {
 			SpawnEnemys ();
@@ -140,127 +126,5 @@ public class NetworkManagerPUN : MonoBehaviour
 		standbyCamera.GetComponent<AudioListener> ().enabled = false;
 
 		respawn = true;
-	}
-
-	void drawMenu ()
-	{
-		switch (menuNumber) {
-		case 0:
-			drawMainMenu ();
-			break;
-		case 1:
-			drawCreateGameMenu ();
-			break;
-		case 2:
-			drawInGameMenu ();
-			break;
-		default:
-			break;
-		}
-		
-	}
-	
-	void drawMainMenu ()
-	{
-		
-		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
-		GUILayout.BeginArea (rect, new GUIStyle ("box"));
-		GUILayout.Label ("MULTIPLAYER MENU");
-		
-		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("USERNAME");
-		playerName = GUILayout.TextField (playerName);
-		GUILayout.EndHorizontal ();
-		
-		/* ROOM LIST -> SELECTION GRID */
-		float innerRectWidth = 700;
-		float innerRectHeight = 250;
-		Rect roomRect = new Rect (50, (Screen.height / 2) - (innerRectHeight / 2), innerRectWidth, innerRectHeight);
-		
-		GUILayout.BeginArea (roomRect, new GUIStyle ("box"));
-		
-		GUILayout.Label ("OPEN GAMES");
-		RoomInfo[] rooms = PhotonNetwork.GetRoomList ();
-	
-		foreach (RoomInfo room in rooms) {
-			if (GUILayout.Button (room.name)) {
-				PhotonNetwork.playerName = playerName;
-				PhotonNetwork.JoinRoom (room.name);
-			}
-		}
-		GUILayout.EndArea ();
-		
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("CREATE NEW GAME")) {
-			menuNumber = 1;
-		}
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.EndArea ();
-	}
-	
-	void drawCreateGameMenu ()
-	{
-		
-		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
-		GUILayout.BeginArea (rect, new GUIStyle ("box"));
-		GUILayout.Label ("CREATE NEW GAME");
-		
-		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("USERNAME");
-		playerName = GUILayout.TextField (playerName);
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("GAME NAME");
-		gameName = GUILayout.TextField (gameName);
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("MAXIMAL PLAYERS (20)");
-		maxPlayers = GUILayout.TextField (maxPlayers);
-		GUILayout.EndHorizontal ();
-		
-		
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("START AND JOIN GAME")) {
-			PhotonNetwork.playerName = playerName;
-			PhotonNetwork.CreateRoom (gameName);
-		}
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO MAIN MENU")) {
-			menuNumber = 0;
-		}
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.EndArea ();
-	}
-	
-	void drawInGameMenu ()
-	{
-		
-		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
-		GUILayout.BeginArea (rect, new GUIStyle ("box"));
-		GUILayout.Label (PhotonNetwork.room.name);
-		
-		
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO GAME")) {
-			showMenu = false;
-		}
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO LOBBY")) {
-			PhotonNetwork.LeaveRoom ();
-			standbyCamera.SetActive (true);
-			showMenu = true;
-			menuNumber = 0;
-		}
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.EndArea ();
 	}
 }
