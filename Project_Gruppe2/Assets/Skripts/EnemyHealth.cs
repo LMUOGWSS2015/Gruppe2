@@ -9,11 +9,15 @@ public class EnemyHealth : Photon.MonoBehaviour
 	private HUD hud;
 	private Material mat;
 	private NetworkManagerPUN networkManager;
+	private bool isSinglePlayer;
+
 
 	// Use this for initialization
 	void Start ()
 	{
 		networkManager = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<NetworkManagerPUN> ();
+		isSinglePlayer = true;
+		hud = GameObject.Find ("HUDCanvas").GetComponent<HUD> ();
 	}
 	
 	// Update is called once per frame
@@ -24,17 +28,16 @@ public class EnemyHealth : Photon.MonoBehaviour
 
 	void Dead ()
 	{
-		if (Utils.isSinglePlayer) {
+		Debug.Log ("Dead: " + isSinglePlayer);
+		if (Utils.isSinglePlayer == true) {
+			Debug.Log ("destroy single player");
 			Destroy (gameObject);
+			//networkManager.SpawnEnemys ();
+			health = 100;
 		} else {
 			PhotonNetwork.Destroy (gameObject);
-			if (Utils.isSinglePlayer) {
-				networkManager.SpawnEnemys ();
-			} else {
-				networkManager.SpawnMyPlayer ();
-				health = 100;
-			}
-
+			networkManager.SpawnMyPlayer ();
+			health = 100;
 		}
 		//hud.incHits ();
 	}
@@ -74,9 +77,12 @@ public class EnemyHealth : Photon.MonoBehaviour
 		hits += 1;
 		health -= theDamage;
 
+		Debug.Log ("Health: " + health);
+		Debug.Log (isAlive ());
 		if (isAlive () == false) {
+			Debug.Log ("Fire Dead");
 			hud.incHits ();
-			Dead ();
+			this.Dead ();
 		}
 		
 		/*if (isAlive () == false) {

@@ -41861,6 +41861,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1111577601}
   - 65: {fileID: 1111577600}
+  - 114: {fileID: 1111577602}
   m_Layer: 0
   m_Name: WorldBox
   m_TagString: Untagged
@@ -41896,6 +41897,17 @@ Transform:
   - {fileID: 495357106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1111577602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1111577599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48f2f0d20e26a40ed95a10208f48f674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1120213254
 Prefab:
   m_ObjectHideFlags: 0
