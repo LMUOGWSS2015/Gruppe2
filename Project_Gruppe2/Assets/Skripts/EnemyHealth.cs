@@ -55,14 +55,14 @@ public class EnemyHealth : Photon.MonoBehaviour
 		if (hitPlayer.ID == PhotonNetwork.player.ID) {
 			hits += 1;
 			health -= theDamage;
-			
-			if (isAlive () == false) {
-				if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
-					Debug.LogError ("Photon View not available!");
-				} else {
-					GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, shootPlayer.name, hitPlayer.name, "kill"));
-					GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> ().RPC ("RaiseKills", PhotonTargets.All, shootPlayer.ID);
-				}
+		}
+
+		if (isAlive () == false) {
+			GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, shootPlayer.name, hitPlayer.name, "kill"));
+			if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
+				Debug.LogError ("Photon View not available!");
+			} else {
+				GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> ().RPC ("RaiseKills", PhotonTargets.All, shootPlayer.ID);
 			}
 		}
 
