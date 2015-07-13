@@ -68,7 +68,7 @@ public class FlyController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.LeftArrow)) {
 			if(rotationSpeed < rotationSpeedMax){
 			rotationSpeed = rotationSpeed * rotationAcc;
-				if(rotationAcc < 1.3f){
+				if(rotationAcc < 1.1f){
 					rotationAcc = rotationAcc * rotationAcc;
 				}
 			}
@@ -81,7 +81,7 @@ public class FlyController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.RightArrow)) {
 			if(rotationSpeed < rotationSpeedMax){
 				rotationSpeed = rotationSpeed * rotationAcc;
-				if(rotationAcc < 1.3f){
+				if(rotationAcc < 1.1f){
 					rotationAcc = rotationAcc * rotationAcc;
 				}
 			}
