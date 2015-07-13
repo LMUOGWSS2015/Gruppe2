@@ -114,10 +114,20 @@ public class NetworkManagerPUN : MonoBehaviour
 
 	public void SpawnMyPlayer ()
 	{
-		Debug.Log ("SpawnMyPlayer");
+		Debug.Log ("SpawnMyPlayer Funktion");
+
+		//int numSpawnSpots = GameObject.FindObjectsOfType<SpawnSpotPlayer> ().Length;
+
+		SpawnSpotPlayer[] spawnSpots = GameObject.FindObjectsOfType<SpawnSpotPlayer> ();
+		//SpawnSpotPlayer spawnSpot = spawnSpots [Random.Range (0, spawnSpots.Length)];
+		int rand = Random.Range (0, spawnSpots.Length);
+		SpawnSpotPlayer spawnSpot = spawnSpots [rand];
 
 		//instantiate a client/ player
-		GameObject myPlayer = (GameObject)PhotonNetwork.Instantiate ("Player", Vector3.zero, Quaternion.identity, 0);
+		GameObject myPlayer = (GameObject)PhotonNetwork.Instantiate ("Player", spawnSpot.transform.position, spawnSpot.transform.rotation, 0);
+
+		Debug.Log ("Position");
+		Debug.Log (myPlayer.transform.position);
 
 		// set player custom properties for global scoreboard
 		if (respawn == false) {
