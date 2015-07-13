@@ -1036,12 +1036,12 @@ TextMesh:
   m_GameObject: {fileID: 115278}
   m_Text: gg
   m_OffsetZ: 0
-  m_CharacterSize: 3
+  m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 24
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1419,7 +1419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfafeff51ddfc44b3be851128cb2b6e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
 --- !u!124 &12429230
 Behaviour:
   m_ObjectHideFlags: 1
