@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyHealth : Photon.MonoBehaviour
 {
 
-	public int health = 100;
+	public static int health = 100;
 	private int hits = 0;
 	private HUD hud;
 	private Material mat;
