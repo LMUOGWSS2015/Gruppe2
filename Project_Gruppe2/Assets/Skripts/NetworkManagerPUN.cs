@@ -49,7 +49,17 @@ public class NetworkManagerPUN : MonoBehaviour
 	}
 
 	void OnPhotonPlayerConnected (PhotonPlayer player)
-	{
+	{	
+		// only the master client sends round time to the connected player
+		if (PhotonNetwork.isMasterClient) {
+			Debug.Log("isMasterClient");
+			if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
+				Debug.LogError ("Photon View not available!");
+			} else {
+				Debug.Log("RPC TIMER");
+				GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<MultiplayerGameLobby> ().GetComponent<PhotonView> ().RPC ("SetRoundTimer", PhotonTargets.All, player.ID, MultiplayerGameLobby.timer);
+			}
+		}
 		GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, player.name, "", "connect"));
 	}
 
@@ -61,6 +71,9 @@ public class NetworkManagerPUN : MonoBehaviour
 	void OnJoinedRoom ()
 	{
 		MultiplayerGameLobby.showLobby = false;
+		if (PhotonNetwork.isMasterClient) {
+			MultiplayerGameLobby.ResetTimer ();
+		}
 
 		SpawnMyPlayer ();
 		if (failed) {
