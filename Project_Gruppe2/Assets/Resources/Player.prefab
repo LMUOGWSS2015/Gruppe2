@@ -262,8 +262,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 181944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -11.2799997, y: 12.1920004, z: 9.31690025}
+  m_LocalScale: {x: 4.6042099, y: 4.60420513, z: 4.60420513}
   m_Children:
   - {fileID: 452728}
   m_Father: {fileID: 0}
@@ -290,6 +290,7 @@ Transform:
   m_LocalPosition: {x: 3.13000011, y: 1.44000006, z: -6.11999989}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 454582}
   - {fileID: 22496648}
   m_Father: {fileID: 441416}
   m_RootOrder: 0
@@ -300,11 +301,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .629999995, y: 8.77999973, z: 5.01999998}
+  m_LocalPosition: {x: .210000038, y: 3.71999955, z: 5.01999998}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 22496648}
-  m_RootOrder: 1
+  m_Father: {fileID: 452728}
+  m_RootOrder: 0
 --- !u!4 &475834
 Transform:
   m_ObjectHideFlags: 1
@@ -1063,14 +1064,14 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115278}
-  m_Text: gg
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 24
+  m_FontSize: 20
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1492,9 +1493,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 499392}
-  - {fileID: 454582}
   m_Father: {fileID: 452728}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}

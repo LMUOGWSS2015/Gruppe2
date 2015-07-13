@@ -19,8 +19,8 @@ public class RaycastShooting : GazeMonobehaviour
 	private Texture crosshairTexture;
 	private RaycastHit hit;
 	private Ray ray;
+	private int rayDistance;
 	private Utils utils;
-	private bool isSinglePlayer;
 
 	void OnGUI ()
 	{
@@ -34,7 +34,8 @@ public class RaycastShooting : GazeMonobehaviour
 		crosshairSize = Screen.width * 0.05f;
 		crosshairTexture = Resources.Load ("crosshair") as Texture;
 		utils = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<Utils> ();
-		isSinglePlayer = Utils.isSinglePlayer;
+
+		rayDistance = Utils.isSinglePlayer ? 100 : 350;
 	}
 
 	// Update is called once per frame
@@ -116,7 +117,7 @@ public class RaycastShooting : GazeMonobehaviour
 				Destroy (particleClone, 2);
 				string myTag = Utils.isSinglePlayer ? "cube":"Player";
 				if (hit.transform.tag == myTag) {
-					if (isSinglePlayer) {
+					if (Utils.isSinglePlayer) {
 						hit.transform.SendMessage ("ApplyDamage2", theDamage, SendMessageOptions.DontRequireReceiver);
 					} else {
 						if (hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> () == null) {

@@ -32,21 +32,16 @@ public class NetworkManagerPUN : Photon.MonoBehaviour
 	{
 		GUILayout.Label (PhotonNetwork.connectionStateDetailed.ToString ());
 
-
-		//if (joined) {
-			GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
+		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
 		
-			Debug.Log ("Players Length: " + players.Length);
-			for (int i=0; i<players.Length; i++) {
-				PhotonPlayer player1 = PhotonPlayer.Find (players [i].transform.GetComponent<PhotonView> ().ownerId);
-				players [i].transform.FindChild ("Main Camera/Camera/New Text").GetComponent<TextMesh> ().text = player1.name;
-				//if(player != null){
-				Debug.Log ("PlayersName: " + player1.name);
-				//}
+		Debug.Log ("Players Length: " + players.Length);
+		for (int i=0; i<players.Length; i++) {
+			PhotonPlayer player1 = PhotonPlayer.Find (players [i].transform.GetComponent<PhotonView> ().ownerId);
+			if (player1.ID != PhotonNetwork.player.ID) {
+				players [i].transform.FindChild ("Main Camera/New Text").GetComponent<TextMesh> ().text = player1.name;
 			}
-			joined = false;
-		//}
-
+		}
+		joined = false;
 	}
 
 	void Update ()
@@ -69,11 +64,11 @@ public class NetworkManagerPUN : Photon.MonoBehaviour
 	{	
 		// only the master client sends round time to the connected player
 		if (PhotonNetwork.isMasterClient) {
-			Debug.Log("isMasterClient");
+			Debug.Log ("isMasterClient");
 			if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
 				Debug.LogError ("Photon View not available!");
 			} else {
-				Debug.Log("RPC TIMER");
+				Debug.Log ("RPC TIMER");
 				GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<MultiplayerGameLobby> ().GetComponent<PhotonView> ().RPC ("SetRoundTimer", PhotonTargets.All, player.ID, MultiplayerGameLobby.timer);
 			}
 		}
