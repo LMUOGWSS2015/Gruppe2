@@ -1,24 +1,47 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MultiplayerGameLobby : MonoBehaviour
 {
 	public static bool showLobby = false;
-
 	float rectWidth = 800;
 	float rectHeight = 500;
 	string playerName = "";
 	string maxPlayers = "";
 	string gameName = "";
 	int menuNumber = 0;
+	float timerWidth = 150;
+	float timerHeight = 30;
+	public static float timer;
+	Rect r;
+	string timerText;
 	GameObject standbyCamera;
+	public EnemyHealth enemyHealth;
 
 	// Use this for initialization
 	void Start ()
 	{
 		standbyCamera = GameObject.Find ("Standby Camera");
+		Time.timeScale = 1.0f;
+		timer = 180.0f;
+		enemyHealth = GameObject.Find ("Player").GetComponent<EnemyHealth> ();
 	}
 	
+	public static void ResetTimer ()
+	{
+		timer = 180.0f;
+	}
+
+	[PunRPC]
+	void SetRoundTimer (int playerId, float t)
+	{
+		if (PhotonNetwork.player.ID == playerId) {
+			timer = t;
+		}
+	}
+
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -28,12 +51,22 @@ public class MultiplayerGameLobby : MonoBehaviour
 			showLobby = !showLobby;
 		}
 
+		// update round timer
+		if (timer >= 0.0f) {
+			timer -= Time.deltaTime;
+			timerText = "" + Mathf.RoundToInt (timer) + " sec";
+		}
 	}
 
 	void OnGUI ()
 	{
-		if (showLobby) {
+		GUI.skin.font = (Font)Resources.Load ("ethnocentric_rg"); 
+
+		if (showLobby == true) {
 			drawMenu ();
+		} else {
+			DrawHealthPoints ();
+			DrawTimer ();
 		}
 	}
 
@@ -53,6 +86,28 @@ public class MultiplayerGameLobby : MonoBehaviour
 			break;
 		}
 		
+	}
+
+	void DrawTimer ()
+	{
+		Rect rect = new Rect ((Screen.width / 2) - 75, 0, timerWidth, timerHeight);
+		GUILayout.BeginArea (rect);
+		GUILayout.BeginHorizontal ();
+		GUILayout.Label (timerText);
+		GUILayout.EndHorizontal ();
+		GUILayout.EndArea ();
+		
+	}
+
+	private void DrawHealthPoints ()
+	{
+		float rectWidth = 2300;
+		float rectHeight = 30;
+
+		Rect rect = new Rect (Screen.width - 240, Screen.height - 35, rectWidth, rectHeight);
+		GUILayout.BeginArea (rect);
+		GUILayout.Label ("HEALTH POINTS: " +EnemyHealth.health.ToString());
+		GUILayout.EndArea ();
 	}
 
 	public void DrawMainMenu ()

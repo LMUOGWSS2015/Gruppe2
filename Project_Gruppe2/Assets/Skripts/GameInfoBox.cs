@@ -21,7 +21,7 @@ public class GameInfoBox : MonoBehaviour
 
 	public void DrawGameInfoBox ()
 	{
-		Rect rect = new Rect (Screen.width - 150, 0, 300, 500);
+		Rect rect = new Rect (Screen.width - 410, 0, 400, 500);
 		GUILayout.BeginArea (rect, "box");
 		
 		foreach (GameInfoBoxModel gameInfoBoxModel in gameInfoBoxElements) {

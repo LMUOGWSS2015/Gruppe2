@@ -38,4 +38,5 @@ MonoBehaviour:
   - RemovePlayer
   - RefreshData
   - AddKillMessage
+  - SetRoundTimer
   DisableAutoOpenWizard: 1
