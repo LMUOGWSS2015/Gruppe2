@@ -68,6 +68,28 @@ public class EnemyHealth : Photon.MonoBehaviour
 		}
 	}
 
+	public void ApplyDamage2 (int theDamage)
+	{
+		Debug.Log ("ApplyDamage: " + theDamage);
+		hits += 1;
+		health -= theDamage;
+
+		/*if (isAlive () == false) {
+
+			hud.incHits();
+		}*/
+		
+		/*if (isAlive () == false) {
+			Debug.Log("I am dead...");
+			if (GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>() == null) {
+				Debug.LogError ("Photon View not available!");
+			} else {
+				Debug.Log("and raise kills");
+				GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>().RPC ("RaiseKills", PhotonTargets.All, playerId);
+			}
+		}*/
+	}
+
 	bool isAlive ()
 	{
 		if (health <= 0) {
