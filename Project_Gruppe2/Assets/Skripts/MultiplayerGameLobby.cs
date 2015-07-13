@@ -55,7 +55,7 @@ public class MultiplayerGameLobby : MonoBehaviour
 		
 	}
 
-	void DrawMainMenu ()
+	public void DrawMainMenu ()
 	{
 		
 		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
@@ -94,7 +94,7 @@ public class MultiplayerGameLobby : MonoBehaviour
 		GUILayout.EndArea ();
 	}
 	
-	void DrawCreateGameMenu ()
+	public void DrawCreateGameMenu ()
 	{
 		
 		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
@@ -133,7 +133,7 @@ public class MultiplayerGameLobby : MonoBehaviour
 		GUILayout.EndArea ();
 	}
 	
-	void DrawInGameMenu ()
+	public void DrawInGameMenu ()
 	{	
 		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
 		GUILayout.BeginArea (rect, new GUIStyle ("box"));
