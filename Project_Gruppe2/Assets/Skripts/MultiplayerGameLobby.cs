@@ -2,15 +2,15 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class MultiplayerGameLobby : MonoBehaviour
+public class MultiplayerGameLobby : Photon.MonoBehaviour
 {
 	public static bool showLobby = false;
+	public static int menuNumber = 0;
 	float rectWidth = 800;
 	float rectHeight = 500;
 	string playerName = "";
 	string maxPlayers = "";
 	string gameName = "";
-	int menuNumber = 0;
 	float timerWidth = 150;
 	float timerHeight = 30;
 	public static float timer;
@@ -23,12 +23,12 @@ public class MultiplayerGameLobby : MonoBehaviour
 	{
 		standbyCamera = GameObject.Find ("Standby Camera");
 		Time.timeScale = 1.0f;
-		timer = 180.0f;
+		timer = 120.0f;
 	}
 	
 	public static void ResetTimer ()
 	{
-		timer = 180.0f;
+		timer = 120.0f;
 	}
 
 	[PunRPC]
@@ -53,6 +53,11 @@ public class MultiplayerGameLobby : MonoBehaviour
 		if (timer >= 0.0f) {
 			timer -= Time.deltaTime;
 			timerText = "" + Mathf.RoundToInt (timer) + " sec";
+		} else {
+			if(PhotonNetwork.inRoom){
+				GlobalScoreHUD.showScoreBoardEnd = true;
+				standbyCamera.SetActive (true);
+			}
 		}
 	}
 
@@ -62,7 +67,10 @@ public class MultiplayerGameLobby : MonoBehaviour
 
 		if (showLobby == true) {
 			drawMenu ();
-		} else {
+		} 
+
+		if(PhotonNetwork.inRoom)
+		{
 			DrawHealthPoints ();
 			DrawTimer ();
 		}

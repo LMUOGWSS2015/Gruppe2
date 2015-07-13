@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class NetworkManagerPUN : MonoBehaviour
+public class NetworkManagerPUN : Photon.MonoBehaviour
 {
 
 	public GameObject standbyCamera;
@@ -32,21 +32,15 @@ public class NetworkManagerPUN : MonoBehaviour
 	{
 		GUILayout.Label (PhotonNetwork.connectionStateDetailed.ToString ());
 
+		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
 
-		//if (joined) {
-			GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
-		
-			Debug.Log ("Players Length: " + players.Length);
-			for (int i=0; i<players.Length; i++) {
-				PhotonPlayer player1 = PhotonPlayer.Find (players [i].transform.GetComponent<PhotonView> ().ownerId);
-				players [i].transform.FindChild ("Main Camera/Camera/New Text").GetComponent<TextMesh> ().text = player1.name;
-				//if(player != null){
-				Debug.Log ("PlayersName: " + player1.name);
-				//}
+		for (int i=0; i<players.Length; i++) {
+			PhotonPlayer player1 = PhotonPlayer.Find (players [i].transform.GetComponent<PhotonView> ().ownerId);
+			if (player1.ID != PhotonNetwork.player.ID) {
+				players [i].transform.FindChild ("Main Camera/New Text").GetComponent<TextMesh> ().text = player1.name;
 			}
-			joined = false;
-		//}
-
+		}
+		joined = false;
 	}
 
 	void Update ()
@@ -69,11 +63,13 @@ public class NetworkManagerPUN : MonoBehaviour
 	{	
 		// only the master client sends round time to the connected player
 		if (PhotonNetwork.isMasterClient) {
-			Debug.Log("isMasterClient");
+			Debug.Log ("MultiplayerGameLobby.ResetTimer ()");
+				MultiplayerGameLobby.ResetTimer ();
+			Debug.Log ("isMasterClient");
 			if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
 				Debug.LogError ("Photon View not available!");
 			} else {
-				Debug.Log("RPC TIMER");
+				Debug.Log ("RPC TIMER");
 				GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<MultiplayerGameLobby> ().GetComponent<PhotonView> ().RPC ("SetRoundTimer", PhotonTargets.All, player.ID, MultiplayerGameLobby.timer);
 			}
 		}
@@ -90,12 +86,9 @@ public class NetworkManagerPUN : MonoBehaviour
 	void OnJoinedRoom ()
 	{
 		MultiplayerGameLobby.showLobby = false;
-		if (PhotonNetwork.isMasterClient) {
-			MultiplayerGameLobby.ResetTimer ();
-		}
 
 		SpawnMyPlayer ();
-
+		MultiplayerGameLobby.ResetTimer ();
 
 		if (failed) {
 			SpawnEnemys ();
@@ -134,9 +127,6 @@ public class NetworkManagerPUN : MonoBehaviour
 
 		//instantiate a client/ player
 		GameObject myPlayer = (GameObject)PhotonNetwork.Instantiate ("Player", spawnSpot.transform.position, spawnSpot.transform.rotation, 0);
-
-		Debug.Log ("Position");
-		Debug.Log (myPlayer.transform.position);
 
 		// set player custom properties for global scoreboard
 		if (respawn == false) {

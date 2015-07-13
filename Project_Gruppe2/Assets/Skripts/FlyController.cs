@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FlyController : MonoBehaviour {
+public class FlyController : Photon.MonoBehaviour {
 	
 	public Transform drone;
 	
@@ -72,8 +72,6 @@ public class FlyController : MonoBehaviour {
 					rotationAcc = rotationAcc * rotationAcc;
 				}
 			}
-			Debug.Log ("RotationSpeed: " + rotationSpeed);
-			Debug.Log ("AccSpeed: " + rotationAcc);
 			RotateLeft();
 		} 
 		
@@ -85,7 +83,6 @@ public class FlyController : MonoBehaviour {
 					rotationAcc = rotationAcc * rotationAcc;
 				}
 			}
-			Debug.Log ("RotationSpeed: " + rotationSpeed);
 			RotateRight();
 		}
 		

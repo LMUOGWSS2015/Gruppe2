@@ -45,7 +45,7 @@ public class GameInfoBox : Photon.MonoBehaviour
 		}
 		GUILayout.EndArea ();
 	}
-
+	
 	public void ReduceGameInfoBoxElementsAliveTime ()
 	{
 		HashSet<GameInfoBoxModel> temp = new HashSet<GameInfoBoxModel> (gameInfoBoxElements);
