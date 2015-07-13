@@ -110,14 +110,19 @@ public class MultiplayerGameLobby : MonoBehaviour
 
 	public void DrawMainMenu ()
 	{
-		
+		GUIStyle guiStyleLabel = new GUIStyle ();
+		guiStyleLabel.fixedWidth = 300;
+		GUIStyle guiStyleValue = new GUIStyle ();
+		guiStyleLabel.fixedWidth = 450;
+
 		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
 		GUILayout.BeginArea (rect, new GUIStyle ("box"));
 		GUILayout.Label ("MULTIPLAYER MENU");
 		
 		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("USERNAME");
-		playerName = GUILayout.TextField (playerName);
+
+		GUILayout.Label ("USERNAME", GUILayout.Width(200));
+		playerName = GUILayout.TextField (playerName, GUILayout.Width(550));
 		GUILayout.EndHorizontal ();
 		
 		/* ROOM LIST -> SELECTION GRID */
@@ -139,7 +144,7 @@ public class MultiplayerGameLobby : MonoBehaviour
 		GUILayout.EndArea ();
 		
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("CREATE NEW GAME")) {
+		if (GUILayout.Button ("CREATE NEW GAME", GUILayout.Width(790))) {
 			menuNumber = 1;
 		}
 		GUILayout.EndHorizontal ();
@@ -155,30 +160,24 @@ public class MultiplayerGameLobby : MonoBehaviour
 		GUILayout.Label ("CREATE NEW GAME");
 		
 		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("USERNAME");
-		playerName = GUILayout.TextField (playerName);
+		GUILayout.Label ("USERNAME", GUILayout.Width(200));
+		playerName = GUILayout.TextField (playerName, GUILayout.Width(550));
 		GUILayout.EndHorizontal ();
 		
 		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("GAME NAME");
-		gameName = GUILayout.TextField (gameName);
+		GUILayout.Label ("GAME NAME", GUILayout.Width(200));
+		gameName = GUILayout.TextField (gameName, GUILayout.Width(550));
 		GUILayout.EndHorizontal ();
-		
+
 		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("MAXIMAL PLAYERS (20)");
-		maxPlayers = GUILayout.TextField (maxPlayers);
-		GUILayout.EndHorizontal ();
-		
-		
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("START AND JOIN GAME")) {
+		if (GUILayout.Button ("START AND JOIN GAME", GUILayout.Width(790))) {
 			PhotonNetwork.playerName = playerName;
 			PhotonNetwork.CreateRoom (gameName);
 		}
 		GUILayout.EndHorizontal ();
 		
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO MAIN MENU")) {
+		if (GUILayout.Button ("BACK TO MAIN MENU", GUILayout.Width(790))) {
 			menuNumber = 0;
 		}
 		GUILayout.EndHorizontal ();
@@ -193,13 +192,13 @@ public class MultiplayerGameLobby : MonoBehaviour
 		GUILayout.Label (PhotonNetwork.room.name);
 
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO GAME")) {
+		if (GUILayout.Button ("BACK TO GAME", GUILayout.Width(790))) {
 			showLobby = false;
 		}
 		GUILayout.EndHorizontal ();
 		
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO LOBBY")) {
+		if (GUILayout.Button ("BACK TO LOBBY", GUILayout.Width(790))) {
 			PhotonNetwork.LeaveRoom ();
 			standbyCamera.SetActive (true);
 			showLobby = true;

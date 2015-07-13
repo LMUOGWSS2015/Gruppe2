@@ -28,28 +28,22 @@ public class GlobalScoreHUD : MonoBehaviour {
 		
 		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
 		GUILayout.BeginArea (rect, new GUIStyle ("box"));
-		GUILayout.Label ("SCOREBOARD");
-		
-		
-//		foreach(PlayerModel player in GlobalScore.players.Values){
-//			GUILayout.BeginHorizontal ();
-//			GUILayout.Label ("NAME");
-//			GUILayout.Label (player.getPlayerName());
-//			GUILayout.Label ("DEATHS");
-//			GUILayout.Label (player.getDeaths().ToString());
-//			GUILayout.EndHorizontal ();
-//		}
+		GUILayout.Label ("SCOREBOARD - " + PhotonNetwork.room.name);
+		GUIStyle guiStyleLabel = new GUIStyle ();
+		guiStyleLabel.fixedWidth = 75;
+		guiStyleLabel.normal.textColor = Color.white;
+		GUIStyle guiStyleValue = new GUIStyle ();
+		guiStyleValue.fixedWidth = 200;
+		guiStyleValue.normal.textColor = Color.white;
 
 		foreach(PhotonPlayer player in PhotonNetwork.playerList){
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("NAME");
-			GUILayout.Label (player.name);
-			GUILayout.Label ("KILLS");
-			GUILayout.Label (player.customProperties["kills"].ToString());
-			GUILayout.Label ("DEATHS");
-			GUILayout.Label (player.customProperties["deaths"].ToString());
-			GUILayout.Label ("SCORE");
-			GUILayout.Label (player.GetScore().ToString());
+			GUILayout.Label ("NAME", guiStyleLabel);
+			GUILayout.Label (player.name, guiStyleValue);
+			GUILayout.Label ("KILLS", guiStyleLabel);
+			GUILayout.Label (player.customProperties["kills"].ToString(), guiStyleValue);
+			GUILayout.Label ("DEATHS", guiStyleLabel);
+			GUILayout.Label (player.customProperties["deaths"].ToString(), guiStyleValue);
 			GUILayout.EndHorizontal ();
 		}
 		GUILayout.EndArea ();

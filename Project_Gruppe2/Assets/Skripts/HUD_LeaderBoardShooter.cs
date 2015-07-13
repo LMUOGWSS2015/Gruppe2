@@ -39,8 +39,8 @@ public class HUD_LeaderBoardShooter : MonoBehaviour {
 				foreach (dreamloLeaderBoard.Score currentScore in scoreList) {
 					count++;
 					GUILayout.BeginHorizontal ();
-					GUILayout.Label (currentScore.playerName);
-					GUILayout.Label (currentScore.score.ToString ());
+					GUILayout.Label (currentScore.playerName, GUILayout.Width(340));
+					GUILayout.Label (currentScore.score.ToString (), GUILayout.Width(50));
 					GUILayout.EndHorizontal ();
 				
 					if (count >= maxToDisplay)
