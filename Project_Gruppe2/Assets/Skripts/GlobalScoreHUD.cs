@@ -12,7 +12,38 @@ public class GlobalScoreHUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+
+		TextMesh[] texts = GameObject.FindObjectsOfType<TextMesh>();
+
+		Debug.Log ("Change Text: "+texts.Length);
+
+		for(int i=0; i<texts.Length; i++){
+
+			texts[i].transform.LookAt(Camera.main.transform.position, Camera.main.transform.up);
+
+		}
 	
+		/*GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
+		
+		Debug.Log ("Players Length: " + players.Length);
+		for (int i=0; i<players.Length; i++) {
+			PhotonPlayer player = PhotonPlayer.Find (players[i].transform.GetComponent<PhotonView>().ownerId);
+			players[i].transform.FindChild("Main Camera/Camera/New Text").GetComponent<TextMesh>().text = player.name;
+			//if(player != null){
+			//Debug.Log ("PlayersName: " + player.name);
+			//}
+		}*/
+
+		/*for(GameObject player in GameObject.FindGameObjectsWithTag ("Player")){
+
+		};*/
+
+
+		//PhotonPlayer player = PhotonPlayer.Find(GameObject.GetComponent<PhotonView>().ownerId);
+
+		
+
 	}
 
 	void OnGUI(){
