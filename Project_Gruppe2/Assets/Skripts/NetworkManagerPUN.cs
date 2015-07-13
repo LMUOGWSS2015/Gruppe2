@@ -10,6 +10,7 @@ public class NetworkManagerPUN : MonoBehaviour
 	private ArrayList indexEnemys = new ArrayList ();
 	private bool failed;
 	private bool respawn = false;
+	private bool joined = false;
 
 	// Use this for initialization
 	void Start ()
@@ -30,6 +31,22 @@ public class NetworkManagerPUN : MonoBehaviour
 	void OnGUI ()
 	{
 		GUILayout.Label (PhotonNetwork.connectionStateDetailed.ToString ());
+
+
+		//if (joined) {
+			GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
+		
+			Debug.Log ("Players Length: " + players.Length);
+			for (int i=0; i<players.Length; i++) {
+				PhotonPlayer player1 = PhotonPlayer.Find (players [i].transform.GetComponent<PhotonView> ().ownerId);
+				players [i].transform.FindChild ("Main Camera/Camera/New Text").GetComponent<TextMesh> ().text = player1.name;
+				//if(player != null){
+				Debug.Log ("PlayersName: " + player1.name);
+				//}
+			}
+			joined = false;
+		//}
+
 	}
 
 	void Update ()
@@ -49,8 +66,20 @@ public class NetworkManagerPUN : MonoBehaviour
 	}
 
 	void OnPhotonPlayerConnected (PhotonPlayer player)
-	{
+	{	
+		// only the master client sends round time to the connected player
+		if (PhotonNetwork.isMasterClient) {
+			Debug.Log("isMasterClient");
+			if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
+				Debug.LogError ("Photon View not available!");
+			} else {
+				Debug.Log("RPC TIMER");
+				GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<MultiplayerGameLobby> ().GetComponent<PhotonView> ().RPC ("SetRoundTimer", PhotonTargets.All, player.ID, MultiplayerGameLobby.timer);
+			}
+		}
 		GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, player.name, "", "connect"));
+		joined = true;
+
 	}
 
 	public void OnPhotonPlayerDisconnected (PhotonPlayer player)
@@ -61,8 +90,13 @@ public class NetworkManagerPUN : MonoBehaviour
 	void OnJoinedRoom ()
 	{
 		MultiplayerGameLobby.showLobby = false;
+		if (PhotonNetwork.isMasterClient) {
+			MultiplayerGameLobby.ResetTimer ();
+		}
 
 		SpawnMyPlayer ();
+
+
 		if (failed) {
 			SpawnEnemys ();
 		}

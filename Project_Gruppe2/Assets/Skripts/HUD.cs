@@ -35,7 +35,7 @@ public class HUD : MonoBehaviour
 		timerText = (Text)timeText.GetComponent (typeof(Text));
 
 		playerName = "";
-		timer = 180.0f;
+		timer = 125.0f;
 		score = 0;
 		totalScore = 0;
 
@@ -51,7 +51,7 @@ public class HUD : MonoBehaviour
 	{
 		if (timer >= 0.0f) {
 			timer -= Time.deltaTime;
-			if (timer <= 10.0f) {
+			if (timer <= 120.0f) {
 				timerText.text = "" + Mathf.RoundToInt (timer) + " sec";
 			}
 			// PAUSE/RESUME GAME
