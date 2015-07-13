@@ -9,13 +9,11 @@ public class EnemyHealth : Photon.MonoBehaviour
 	private HUD hud;
 	private Material mat;
 	private NetworkManagerPUN networkManager;
-	private GlobalScore globalScore;
 
 	// Use this for initialization
 	void Start ()
 	{
 		networkManager = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<NetworkManagerPUN> ();
-		globalScore = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ();
 	}
 	
 	// Update is called once per frame
@@ -25,9 +23,9 @@ public class EnemyHealth : Photon.MonoBehaviour
 			if (Utils.isSinglePlayer == false) {
 				Debug.Log ("Is Dead!");
 				int deaths = int.Parse (PhotonNetwork.player.customProperties ["deaths"].ToString ()) + 1;
-				ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable() {{"deaths", deaths.ToString()}};
-				PhotonNetwork.player.SetCustomProperties(someCustomPropertiesToSet);
-				Debug.Log("deaths: " + PhotonNetwork.player.customProperties ["deaths"]);
+				ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable () {{"deaths", deaths.ToString()}};
+				PhotonNetwork.player.SetCustomProperties (someCustomPropertiesToSet);
+				Debug.Log ("deaths: " + PhotonNetwork.player.customProperties ["deaths"]);
 			}
 			Dead ();
 		}
@@ -51,22 +49,23 @@ public class EnemyHealth : Photon.MonoBehaviour
 	}
 
 	[PunRPC]
-	public void ApplyDamage (int theDamage, PhotonPlayer player)
+	public void ApplyDamage (int theDamage, PhotonPlayer shootPlayer, PhotonPlayer hitPlayer)
 	{
-		hits += 1;
-		health -= theDamage;
-
-		if (isAlive () == false) {
-			if (GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>() == null) {
-				Debug.LogError ("Photon View not available!");
-			} else {
-				Debug.Log("Player SHOOT - ID: " + player.ID + "-NAME: " + player.name);
-				Debug.Log("Player HIT - ID: " + PhotonNetwork.player.ID + "-NAME: " + PhotonNetwork.player.name);
-				GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, player.name, PhotonNetwork.player.name, "kill"));
-				Debug.Log("and raise kills");
-				GameObject.Find("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView>().RPC ("RaiseKills", PhotonTargets.All, player.ID);
+		// only apply damage if was hitten
+		if (hitPlayer.ID == PhotonNetwork.player.ID) {
+			hits += 1;
+			health -= theDamage;
+			
+			if (isAlive () == false) {
+				if (GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> () == null) {
+					Debug.LogError ("Photon View not available!");
+				} else {
+					GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, shootPlayer.name, hitPlayer.name, "kill"));
+					GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<GlobalScore> ().GetComponent<PhotonView> ().RPC ("RaiseKills", PhotonTargets.All, shootPlayer.ID);
+				}
 			}
 		}
+
 	}
 
 	public void ApplyDamage2 (int theDamage)

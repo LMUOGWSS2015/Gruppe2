@@ -79,14 +79,13 @@ public class RaycastShooting : GazeMonobehaviour
 //			if (Physics.Raycast(transform.position, Vector3.forward, Mathf.Infinity, layerMask))
 //				Debug.Log("The ray hit the player");
 
-			Debug.Log ("Fire Button Pressed!");
 			// show light
 			GameObject.Find ("QuadCopter").GetComponent<LightControl> ().shootLight ();
 
 			// play fire sound when fire button is pressed
 			fireSource.PlayOneShot (fireSound, 1);
+//			if(Physics.SphereCast(ray, 2f, out hit, 150)){
 			if (Physics.Raycast (ray, out hit, 150)) {
-				Debug.Log("hit.transform.name = " + hit.transform.name); 
 				// bullet hole
 				GameObject bulletHoleClone = utils.CustomInstantiate ("BulletHole", hit);
 
@@ -102,7 +101,7 @@ public class RaycastShooting : GazeMonobehaviour
 				GameObject fireClone = utils.CustomInstantiate ("FireMobile", hit);
 				Destroy (fireClone, 5);
 
-				// if we hit a cube, add bullet hole and fire clone to cube object
+				// if we hit a cube or a player, add bullet hole and fire clone to cube object
 				if (hit.transform.tag == "cube" || hit.transform.tag == "Player") {
 					bulletHoleClone.transform.parent = hit.transform;
 					fireClone.transform.parent = hit.transform;
@@ -115,7 +114,6 @@ public class RaycastShooting : GazeMonobehaviour
 				// particle filter effect
 				GameObject particleClone = utils.CustomInstantiate ("Particle System", hit);
 				Destroy (particleClone, 2);
-				Debug.Log (hit.transform.tag);
 				string myTag = Utils.isSinglePlayer ? "cube":"Player";
 				if (hit.transform.tag == myTag) {
 					if (isSinglePlayer) {
@@ -124,9 +122,9 @@ public class RaycastShooting : GazeMonobehaviour
 						if (hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> () == null) {
 							Debug.LogError ("Photon View not available!");
 						} else {
-							hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> ().RPC ("ApplyDamage", PhotonTargets.All, theDamage, PhotonNetwork.player);
+							PhotonPlayer hitPlayer = PhotonPlayer.Find(hit.transform.GetComponent<PhotonView>().ownerId);
+							hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> ().RPC ("ApplyDamage", PhotonTargets.All, theDamage, PhotonNetwork.player, hitPlayer);
 						}
-						
 					}
 				}
 			}
