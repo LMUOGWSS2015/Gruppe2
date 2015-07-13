@@ -25,7 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: .0469999984, g: .0430000015, b: .0350000001, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a03ab17b6738341feaa7c90f1938c4ba, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -2248,7 +2248,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drone: {fileID: 1765281446}
   movementSpeed: .5
-  rotationSpeed: 1
   controllerSensitivity: .5
 --- !u!1 &341207400 stripped
 GameObject:
@@ -5594,7 +5593,7 @@ Transform:
   - {fileID: 970602508}
   - {fileID: 1219768334}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &877084582 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100714, guid: a5ef58cc7e542482ea05e7bedaf380a5, type: 3}
