@@ -9,15 +9,14 @@ public class EnemyHealth : Photon.MonoBehaviour
 	private HUD hud;
 	private Material mat;
 	private NetworkManagerPUN networkManager;
-	private bool isSinglePlayer;
-
 
 	// Use this for initialization
 	void Start ()
 	{
 		networkManager = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<NetworkManagerPUN> ();
-		isSinglePlayer = true;
-		hud = GameObject.Find ("HUDCanvas").GetComponent<HUD> ();
+		if (Utils.isSinglePlayer) {
+			hud = GameObject.Find ("HUDCanvas").GetComponent<HUD> ();
+		}
 	}
 	
 	// Update is called once per frame
@@ -28,7 +27,6 @@ public class EnemyHealth : Photon.MonoBehaviour
 
 	void Dead ()
 	{
-		Debug.Log ("Dead: " + isSinglePlayer);
 		if (Utils.isSinglePlayer == true) {
 			Debug.Log ("destroy single player");
 			Destroy (gameObject);

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FlyController : MonoBehaviour {
+public class FlyController : Photon.MonoBehaviour {
 	
 	public Transform drone;
 	

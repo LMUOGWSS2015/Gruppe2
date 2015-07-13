@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class NetworkManagerPUN : MonoBehaviour
+public class NetworkManagerPUN : Photon.MonoBehaviour
 {
 
 	public GameObject standbyCamera;

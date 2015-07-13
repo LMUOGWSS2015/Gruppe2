@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class MultiplayerGameLobby : MonoBehaviour
+public class MultiplayerGameLobby : Photon.MonoBehaviour
 {
 	public static bool showLobby = false;
 	float rectWidth = 800;

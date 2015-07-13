@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GlobalScoreHUD : MonoBehaviour {
+public class GlobalScoreHUD : Photon.MonoBehaviour {
 
 
 	// Use this for initialization
@@ -64,17 +64,14 @@ public class GlobalScoreHUD : MonoBehaviour {
 		guiStyleLabel.fixedWidth = 75;
 		guiStyleLabel.normal.textColor = Color.white;
 		GUIStyle guiStyleValue = new GUIStyle ();
-		guiStyleValue.fixedWidth = 200;
+		guiStyleValue.fixedWidth = 175;
 		guiStyleValue.normal.textColor = Color.white;
 
 		foreach(PhotonPlayer player in PhotonNetwork.playerList){
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("NAME", guiStyleLabel);
-			GUILayout.Label (player.name, guiStyleValue);
-			GUILayout.Label ("KILLS", guiStyleLabel);
-			GUILayout.Label (player.customProperties["kills"].ToString(), guiStyleValue);
-			GUILayout.Label ("DEATHS", guiStyleLabel);
-			GUILayout.Label (player.customProperties["deaths"].ToString(), guiStyleValue);
+			GUILayout.Label ("NAME " + player.name, GUILayout.Width(300));
+			GUILayout.Label ("DEATHS " + player.customProperties["deaths"].ToString(), GUILayout.Width(240));
+			GUILayout.Label ("KILLS " + player.customProperties["kills"].ToString(), GUILayout.Width(240));
 			GUILayout.EndHorizontal ();
 		}
 		GUILayout.EndArea ();
