@@ -22,7 +22,7 @@ public class GameInfoBox : Photon.MonoBehaviour
 	public void DrawGameInfoBox ()
 	{
 		Rect rect = new Rect (Screen.width - 410, 0, 400, 500);
-		GUILayout.BeginArea (rect, "box");
+		GUILayout.BeginArea (rect);
 		
 		foreach (GameInfoBoxModel gameInfoBoxModel in gameInfoBoxElements) {
 			string label = "";
