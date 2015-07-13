@@ -237,10 +237,10 @@ RectTransform:
   - {fileID: 153855701}
   - {fileID: 284158944}
   - {fileID: 931467730}
+  - {fileID: 580504591}
   - {fileID: 1031341920}
   - {fileID: 1042192885}
   - {fileID: 2107886911}
-  - {fileID: 580504591}
   - {fileID: 1999740711}
   - {fileID: 1776524228}
   m_Father: {fileID: 0}
@@ -947,7 +947,7 @@ RectTransform:
   m_Children:
   - {fileID: 1287210115}
   m_Father: {fileID: 66832249}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 280, y: 10}
@@ -999,7 +999,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 3
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1439,7 +1439,7 @@ RectTransform:
   m_Children:
   - {fileID: 1708737891}
   m_Father: {fileID: 66832249}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 176, y: -45}
@@ -1491,7 +1491,7 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 6
+          m_IntArgument: 7
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1555,7 +1555,7 @@ RectTransform:
   m_Children:
   - {fileID: 619538688}
   m_Father: {fileID: 66832249}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 176, y: -100}
@@ -2822,7 +2822,7 @@ RectTransform:
   - {fileID: 1395774762}
   - {fileID: 760743681}
   m_Father: {fileID: 66832249}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 100, y: -145}
