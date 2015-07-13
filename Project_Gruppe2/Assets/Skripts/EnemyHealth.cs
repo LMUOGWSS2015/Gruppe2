@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyHealth : Photon.MonoBehaviour
 {
 
-	public int health = 100;
+	public static int health = 100;
 	private int hits = 0;
 	private HUD hud;
 	private Material mat;
@@ -19,16 +19,7 @@ public class EnemyHealth : Photon.MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-//		if (isAlive () == false) {
-//			if (Utils.isSinglePlayer == false) {
-//				Debug.Log ("Is Dead!");
-//				int deaths = int.Parse (PhotonNetwork.player.customProperties ["deaths"].ToString ()) + 1;
-//				ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable () {{"deaths", deaths.ToString()}};
-//				PhotonNetwork.player.SetCustomProperties (someCustomPropertiesToSet);
-//				Debug.Log ("deaths: " + PhotonNetwork.player.customProperties ["deaths"]);
-//			}
-//			Dead ();
-//		}
+
 	}
 
 	void Dead ()
@@ -84,7 +75,7 @@ public class EnemyHealth : Photon.MonoBehaviour
 		health -= theDamage;
 
 		if (isAlive () == false) {
-			hud.incHits();
+			hud.incHits ();
 			Dead ();
 		}
 		
