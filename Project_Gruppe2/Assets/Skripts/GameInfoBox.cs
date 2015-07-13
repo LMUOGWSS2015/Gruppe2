@@ -14,6 +14,11 @@ public class GameInfoBox : MonoBehaviour
 		}
 	}
 
+	[PunRPC]
+	void AddKillMessage(PhotonPlayer shootPlayer, PhotonPlayer hitPlayer){
+		gameInfoBoxElements.Add (new GameInfoBoxModel (0, shootPlayer.name, hitPlayer.name, "kill"));
+	}
+
 	public void DrawGameInfoBox ()
 	{
 		Rect rect = new Rect (Screen.width - 150, 0, 300, 500);
