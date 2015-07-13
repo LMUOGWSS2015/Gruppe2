@@ -123,7 +123,7 @@ public class RaycastShooting : GazeMonobehaviour
 				string myTag = Utils.isSinglePlayer ? "cube":"Player";
 				if (hit.transform.tag == myTag) {
 					if (isSinglePlayer) {
-						hit.transform.SendMessage ("ApplyDamage", theDamage, SendMessageOptions.DontRequireReceiver);
+						hit.transform.SendMessage ("ApplyDamage2", theDamage, SendMessageOptions.DontRequireReceiver);
 					} else {
 						if (hit.transform.GetComponent<EnemyHealth> ().GetComponent<PhotonView> () == null) {
 							Debug.LogError ("Photon View not available!");
