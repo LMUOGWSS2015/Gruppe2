@@ -37,4 +37,5 @@ MonoBehaviour:
   - RaiseKills
   - RemovePlayer
   - RefreshData
+  - AddKillMessage
   DisableAutoOpenWizard: 1
