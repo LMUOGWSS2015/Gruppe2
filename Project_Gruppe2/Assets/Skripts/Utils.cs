@@ -4,7 +4,7 @@ using System.Collections;
 public class Utils : MonoBehaviour {
 
 	public static bool isSinglePlayer = false;
-	public static bool offlineMode = true;
+	public static bool offlineMode = false;
 	public static bool enableEyeTracking = false;
 
 	// Use this for initialization

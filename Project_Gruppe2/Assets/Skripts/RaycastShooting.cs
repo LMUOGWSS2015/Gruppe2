@@ -19,7 +19,6 @@ public class RaycastShooting : GazeMonobehaviour
 	private Texture crosshairTexture;
 	private RaycastHit hit;
 	private Ray ray;
-	private EnemyHealth enemyHealth;
 	private Utils utils;
 	private bool isSinglePlayer;
 
@@ -34,7 +33,6 @@ public class RaycastShooting : GazeMonobehaviour
 		fireSource = GetComponent<AudioSource> ();
 		crosshairSize = Screen.width * 0.05f;
 		crosshairTexture = Resources.Load ("crosshair") as Texture;
-		enemyHealth = this.transform.GetComponent<EnemyHealth> ();
 		utils = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<Utils> ();
 		isSinglePlayer = Utils.isSinglePlayer;
 	}
@@ -75,12 +73,11 @@ public class RaycastShooting : GazeMonobehaviour
 	
 		// player shoots
 		if (Input.GetButtonDown ("Fire1")) {
-
-			int layerMask = 1 << 8;
-			
-			// Does the ray intersect any objects which are in the player layer.
-			if (Physics.Raycast(transform.position, Vector3.forward, Mathf.Infinity, layerMask))
-				Debug.Log("The ray hit the player");
+//			int layerMask = 1 << 8;
+//			
+//			// Does the ray intersect any objects which are in the player layer.
+//			if (Physics.Raycast(transform.position, Vector3.forward, Mathf.Infinity, layerMask))
+//				Debug.Log("The ray hit the player");
 
 			Debug.Log ("Fire Button Pressed!");
 			// show light
@@ -89,8 +86,7 @@ public class RaycastShooting : GazeMonobehaviour
 			// play fire sound when fire button is pressed
 			fireSource.PlayOneShot (fireSound, 1);
 			if (Physics.Raycast (ray, out hit, 100)) {
-				Debug.Log ("Raycast hit!");
-
+				Debug.Log("hit.transform.name = " + hit.transform.name); 
 				// bullet hole
 				GameObject bulletHoleClone = utils.CustomInstantiate ("BulletHole", hit);
 
@@ -107,7 +103,7 @@ public class RaycastShooting : GazeMonobehaviour
 				Destroy (fireClone, 5);
 
 				// if we hit a cube, add bullet hole and fire clone to cube object
-				if (hit.transform.tag == "cube") {
+				if (hit.transform.tag == "cube" || hit.transform.tag == "Player") {
 					bulletHoleClone.transform.parent = hit.transform;
 					fireClone.transform.parent = hit.transform;
 				} 
