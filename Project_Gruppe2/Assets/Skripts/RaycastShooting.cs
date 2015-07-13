@@ -85,7 +85,7 @@ public class RaycastShooting : GazeMonobehaviour
 
 			// play fire sound when fire button is pressed
 			fireSource.PlayOneShot (fireSound, 1);
-			if (Physics.Raycast (ray, out hit, 100)) {
+			if (Physics.Raycast (ray, out hit, 150)) {
 				Debug.Log("hit.transform.name = " + hit.transform.name); 
 				// bullet hole
 				GameObject bulletHoleClone = utils.CustomInstantiate ("BulletHole", hit);

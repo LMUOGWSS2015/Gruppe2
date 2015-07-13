@@ -19,8 +19,8 @@ public class NetworkCharacter : Photon.MonoBehaviour
 			// Do nothing -> the character motor/ input etc is moving us
 		} else {
 			Debug.Log("is not mine");
-			transform.position = Vector3.Lerp(transform.position, realPosition, 0.1f);
-			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.1f);
+			transform.position = Vector3.Lerp(transform.position, realPosition, 0.05f);
+			transform.rotation = Quaternion.Lerp(transform.rotation, realRotation, 0.05f);
 		}
 	}
 
