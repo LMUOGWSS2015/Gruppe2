@@ -17,7 +17,6 @@ public class MultiplayerGameLobby : MonoBehaviour
 	Rect r;
 	string timerText;
 	GameObject standbyCamera;
-	public EnemyHealth enemyHealth;
 
 	// Use this for initialization
 	void Start ()
@@ -25,7 +24,6 @@ public class MultiplayerGameLobby : MonoBehaviour
 		standbyCamera = GameObject.Find ("Standby Camera");
 		Time.timeScale = 1.0f;
 		timer = 180.0f;
-		enemyHealth = GameObject.Find ("Player").GetComponent<EnemyHealth> ();
 	}
 	
 	public static void ResetTimer ()

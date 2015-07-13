@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameInfoBox : MonoBehaviour
+public class GameInfoBox : Photon.MonoBehaviour
 {
 	public static HashSet<GameInfoBoxModel> gameInfoBoxElements = new HashSet<GameInfoBoxModel> ();
 
