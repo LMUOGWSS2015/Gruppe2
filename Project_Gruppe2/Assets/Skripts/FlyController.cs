@@ -72,8 +72,6 @@ public class FlyController : Photon.MonoBehaviour {
 					rotationAcc = rotationAcc * rotationAcc;
 				}
 			}
-			Debug.Log ("RotationSpeed: " + rotationSpeed);
-			Debug.Log ("AccSpeed: " + rotationAcc);
 			RotateLeft();
 		} 
 		
@@ -85,7 +83,6 @@ public class FlyController : Photon.MonoBehaviour {
 					rotationAcc = rotationAcc * rotationAcc;
 				}
 			}
-			Debug.Log ("RotationSpeed: " + rotationSpeed);
 			RotateRight();
 		}
 		
