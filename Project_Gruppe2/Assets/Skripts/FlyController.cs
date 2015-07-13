@@ -6,7 +6,12 @@ public class FlyController : MonoBehaviour {
 	public Transform drone;
 	
 	public float movementSpeed = 0.5f;
-	public float rotationSpeed = 1.5f;
+	private float rotationSpeedDefault = 1.0f;
+	private float rotationSpeedMax = 4.5f;
+	private float rotationAcc = 1.000001f;
+
+
+	private float rotationSpeed = 1.0f;
 	
 	public float controllerSensitivity = 0.5f;
 	
@@ -52,14 +57,35 @@ public class FlyController : MonoBehaviour {
 		if (Input.GetKey (KeyCode.DownArrow)) {
 			GoBack(-1f);
 		}
-		
+
+		if (Input.GetKeyDown (KeyCode.LeftArrow) || Input.GetKeyDown (KeyCode.RightArrow) || Input.GetKeyUp (KeyCode.LeftArrow) || Input.GetKeyUp (KeyCode.RightArrow) ) {
+			rotationSpeed = rotationSpeedDefault;
+			rotationAcc = 1.000001f;
+		}
+
+
 		// drehung links
 		if (Input.GetKey (KeyCode.LeftArrow)) {
+			if(rotationSpeed < rotationSpeedMax){
+			rotationSpeed = rotationSpeed * rotationAcc;
+				if(rotationAcc < 1.3f){
+					rotationAcc = rotationAcc * rotationAcc;
+				}
+			}
+			Debug.Log ("RotationSpeed: " + rotationSpeed);
+			Debug.Log ("AccSpeed: " + rotationAcc);
 			RotateLeft();
 		} 
 		
 		// drehung rechts
 		if (Input.GetKey (KeyCode.RightArrow)) {
+			if(rotationSpeed < rotationSpeedMax){
+				rotationSpeed = rotationSpeed * rotationAcc;
+				if(rotationAcc < 1.3f){
+					rotationAcc = rotationAcc * rotationAcc;
+				}
+			}
+			Debug.Log ("RotationSpeed: " + rotationSpeed);
 			RotateRight();
 		}
 		
