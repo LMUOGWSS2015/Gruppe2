@@ -37,7 +37,7 @@ public class HUD_Race : MonoBehaviour
 
 		score = 0;
 		totalScore = 0;
-		timer = 15.0f;
+		timer = 125.0f;
 		playerName = "";
 
 		this.dlRace = dreamloLeaderBoard.GetSceneDreamloLeaderboard();
@@ -52,7 +52,7 @@ public class HUD_Race : MonoBehaviour
 	{
 		if (timer >= 0.0f) {
 			timer -= Time.deltaTime;
-			if (timer <= 10.0f) {
+			if (timer <= 120.0f) {
 				timerText.text = "" + Mathf.RoundToInt (timer) + " sec";
 			}
 			// PAUSE/RESUME GAME
