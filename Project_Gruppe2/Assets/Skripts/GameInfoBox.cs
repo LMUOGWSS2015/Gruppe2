@@ -40,7 +40,10 @@ public class GameInfoBox : Photon.MonoBehaviour
 				break;
 			}
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label (label);
+			GUIStyle guiStyle = new GUIStyle();
+			guiStyle.alignment = TextAnchor.MiddleRight;
+			guiStyle.normal.textColor = Color.white;
+			GUILayout.Label (label, guiStyle);
 			GUILayout.EndHorizontal ();
 		}
 		GUILayout.EndArea ();
