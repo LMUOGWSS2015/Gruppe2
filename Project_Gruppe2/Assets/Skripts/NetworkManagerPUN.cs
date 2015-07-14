@@ -35,7 +35,7 @@ public class NetworkManagerPUN : Photon.MonoBehaviour
 		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
 
 		for (int i=0; i<players.Length; i++) {
-			PhotonPlayer player1 = PhotonPlayer.Find (players [i].transform.GetComponent<PhotonView> ().ownerId);
+			PhotonPlayer player1 = PhotonPlayer.Find (players[i].transform.GetComponent<PhotonView> ().ownerId);
 			if (player1.ID != PhotonNetwork.player.ID) {
 				players [i].transform.FindChild ("Main Camera/New Text").GetComponent<TextMesh> ().text = player1.name;
 			}
@@ -75,6 +75,9 @@ public class NetworkManagerPUN : Photon.MonoBehaviour
 		}
 		GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, player.name, "", "connect"));
 		joined = true;
+
+		ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable () {{"deaths", "0"}, {"kills", "0"}};
+		PhotonNetwork.player.SetCustomProperties (someCustomPropertiesToSet);
 
 	}
 

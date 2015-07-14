@@ -55,8 +55,8 @@ public class GlobalScoreHUD : Photon.MonoBehaviour
 			foreach (PhotonPlayer player in PhotonNetwork.playerList) {
 				GUILayout.BeginHorizontal ();
 				GUILayout.Label ("NAME " + player.name, GUILayout.Width (300));
-				GUILayout.Label ("DEATHS " + player.customProperties ["deaths"].ToString (), GUILayout.Width (240));
 				GUILayout.Label ("KILLS " + player.customProperties ["kills"].ToString (), GUILayout.Width (240));
+				GUILayout.Label ("DEATHS " + player.customProperties ["deaths"].ToString (), GUILayout.Width (240));
 				GUILayout.EndHorizontal ();
 			}
 
@@ -94,8 +94,8 @@ public class GlobalScoreHUD : Photon.MonoBehaviour
 			foreach (PhotonPlayer player in PhotonNetwork.playerList) {
 				GUILayout.BeginHorizontal ();
 				GUILayout.Label ("NAME " + player.name, GUILayout.Width (300));
-				GUILayout.Label ("DEATHS " + player.customProperties ["deaths"].ToString (), GUILayout.Width (240));
 				GUILayout.Label ("KILLS " + player.customProperties ["kills"].ToString (), GUILayout.Width (240));
+				GUILayout.Label ("DEATHS " + player.customProperties ["deaths"].ToString (), GUILayout.Width (240));
 				GUILayout.EndHorizontal ();
 			}
 			GUILayout.EndArea ();
