@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LightControl : Photon.MonoBehaviour {
+public class LightControl : MonoBehaviour {
 
 	Light propRR;
 	Light propRL;

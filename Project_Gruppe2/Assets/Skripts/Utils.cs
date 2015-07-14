@@ -26,14 +26,6 @@ public class Utils : MonoBehaviour {
 		Debug.Log ("EYETRACKING: " + enableEyeTracking);
 	}
 
-//	public bool GetIsSinglePlayer(){
-//		return this.isSinglePlayer;
-//	}
-//
-//	public void SetIsSinglePlayer(bool isSinglePlayer){
-//		this.isSinglePlayer = isSinglePlayer;
-//	}
-
 	public GameObject CustomInstantiate (string gameObjectString, RaycastHit myHit)
 	{
 		GameObject myGameObject = null;

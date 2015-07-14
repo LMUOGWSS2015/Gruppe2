@@ -75,10 +75,6 @@ public class NetworkManagerPUN : Photon.MonoBehaviour
 		}
 		GameInfoBox.gameInfoBoxElements.Add (new GameInfoBoxModel (0, player.name, "", "connect"));
 		joined = true;
-
-		ExitGames.Client.Photon.Hashtable someCustomPropertiesToSet = new ExitGames.Client.Photon.Hashtable () {{"deaths", "0"}, {"kills", "0"}};
-		PhotonNetwork.player.SetCustomProperties (someCustomPropertiesToSet);
-
 	}
 
 	public void OnPhotonPlayerDisconnected (PhotonPlayer player)
