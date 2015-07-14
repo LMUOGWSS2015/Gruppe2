@@ -14,6 +14,7 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 	float timerWidth = 150;
 	float timerHeight = 30;
 	public static float timer;
+	Menu2 menu2;
 	Rect r;
 	string timerText;
 	GameObject standbyCamera;
@@ -24,6 +25,7 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 		standbyCamera = GameObject.Find ("Standby Camera");
 		Time.timeScale = 1.0f;
 		timer = 120.0f;
+		menu2 = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<Menu2> ();
 	}
 	
 	public static void ResetTimer ()
@@ -155,7 +157,16 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 			menuNumber = 1;
 		}
 		GUILayout.EndHorizontal ();
+
 		
+		GUILayout.BeginHorizontal ();
+		if (GUILayout.Button ("BACK TO MAIN MENU", GUILayout.Width (790))) {
+			Debug.Log("BACK TO MAIN MENU");
+			menu2.ChangeToScene(0);
+		}
+		GUILayout.EndHorizontal ();
+		
+
 		GUILayout.EndArea ();
 	}
 	
@@ -184,7 +195,7 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 		GUILayout.EndHorizontal ();
 		
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO MAIN MENU", GUILayout.Width (790))) {
+		if (GUILayout.Button ("BACK TO LOBBY", GUILayout.Width (790))) {
 			menuNumber = 0;
 		}
 		GUILayout.EndHorizontal ();
