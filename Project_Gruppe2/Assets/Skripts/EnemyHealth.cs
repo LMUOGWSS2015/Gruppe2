@@ -14,7 +14,7 @@ public class EnemyHealth : Photon.MonoBehaviour
 	void Start ()
 	{
 		networkManager = GameObject.Find ("_GLOBAL_SCRIPTS").GetComponent<NetworkManagerPUN> ();
-		if (Utils.isSinglePlayer) {
+		if (Utils.isSinglePlayer == true) {
 			hud = GameObject.Find ("HUDCanvas").GetComponent<HUD> ();
 		}
 	}
@@ -43,17 +43,13 @@ public class EnemyHealth : Photon.MonoBehaviour
 	[PunRPC]
 	public void ApplyDamage (int theDamage, PhotonPlayer shootPlayer, PhotonPlayer hitPlayer)
 	{
-		Debug.Log ("Apply Damage");
 		// only apply damage if was hitten
 		if (hitPlayer.ID == PhotonNetwork.player.ID) {
 			hits += 1;
 			health -= theDamage;
-			Debug.Log ("Health: " + health);
 		}
 
 		if (isAlive () == false) {
-			Debug.Log ("Apply Damage - isDead");
-
 			int deaths = int.Parse (PhotonNetwork.player.customProperties ["deaths"].ToString ()) + 1;
 			PhotonNetwork.player.SetCustomProperties (new ExitGames.Client.Photon.Hashtable () {{"deaths", deaths.ToString()}});
 

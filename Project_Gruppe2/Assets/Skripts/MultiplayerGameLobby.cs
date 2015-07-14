@@ -54,7 +54,7 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 			timer -= Time.deltaTime;
 			timerText = "" + Mathf.RoundToInt (timer) + " sec";
 		} else {
-			if(PhotonNetwork.inRoom){
+			if (PhotonNetwork.inRoom) {
 				GlobalScoreHUD.showScoreBoardEnd = true;
 				standbyCamera.SetActive (true);
 			}
@@ -69,8 +69,7 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 			drawMenu ();
 		} 
 
-		if(PhotonNetwork.inRoom)
-		{
+		if (PhotonNetwork.inRoom) {
 			DrawHealthPoints ();
 			DrawTimer ();
 		}
@@ -112,7 +111,7 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 
 		Rect rect = new Rect (Screen.width - 240, Screen.height - 35, rectWidth, rectHeight);
 		GUILayout.BeginArea (rect);
-		GUILayout.Label ("HEALTH POINTS: " +EnemyHealth.health.ToString());
+		GUILayout.Label ("HEALTH POINTS: " + EnemyHealth.health.ToString ());
 		GUILayout.EndArea ();
 	}
 
@@ -129,8 +128,8 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 		
 		GUILayout.BeginHorizontal ();
 
-		GUILayout.Label ("USERNAME", GUILayout.Width(200));
-		playerName = GUILayout.TextField (playerName, GUILayout.Width(550));
+		GUILayout.Label ("USERNAME", GUILayout.Width (200));
+		playerName = GUILayout.TextField (playerName, GUILayout.Width (550));
 		GUILayout.EndHorizontal ();
 		
 		/* ROOM LIST -> SELECTION GRID */
@@ -152,7 +151,7 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 		GUILayout.EndArea ();
 		
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("CREATE NEW GAME", GUILayout.Width(790))) {
+		if (GUILayout.Button ("CREATE NEW GAME", GUILayout.Width (790))) {
 			menuNumber = 1;
 		}
 		GUILayout.EndHorizontal ();
@@ -168,24 +167,24 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 		GUILayout.Label ("CREATE NEW GAME");
 		
 		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("USERNAME", GUILayout.Width(200));
-		playerName = GUILayout.TextField (playerName, GUILayout.Width(550));
+		GUILayout.Label ("USERNAME", GUILayout.Width (200));
+		playerName = GUILayout.TextField (playerName, GUILayout.Width (550));
 		GUILayout.EndHorizontal ();
 		
 		GUILayout.BeginHorizontal ();
-		GUILayout.Label ("GAME NAME", GUILayout.Width(200));
-		gameName = GUILayout.TextField (gameName, GUILayout.Width(550));
+		GUILayout.Label ("GAME NAME", GUILayout.Width (200));
+		gameName = GUILayout.TextField (gameName, GUILayout.Width (550));
 		GUILayout.EndHorizontal ();
 
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("START AND JOIN GAME", GUILayout.Width(790))) {
+		if (GUILayout.Button ("START AND JOIN GAME", GUILayout.Width (790))) {
 			PhotonNetwork.playerName = playerName;
 			PhotonNetwork.CreateRoom (gameName);
 		}
 		GUILayout.EndHorizontal ();
 		
 		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO MAIN MENU", GUILayout.Width(790))) {
+		if (GUILayout.Button ("BACK TO MAIN MENU", GUILayout.Width (790))) {
 			menuNumber = 0;
 		}
 		GUILayout.EndHorizontal ();
@@ -195,25 +194,27 @@ public class MultiplayerGameLobby : Photon.MonoBehaviour
 	
 	public void DrawInGameMenu ()
 	{	
-		Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
-		GUILayout.BeginArea (rect, new GUIStyle ("box"));
-		GUILayout.Label (PhotonNetwork.room.name);
-
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO GAME", GUILayout.Width(790))) {
-			showLobby = false;
+		if (PhotonNetwork.inRoom) {
+			Rect rect = new Rect ((Screen.width / 2) - (rectWidth / 2), (Screen.height / 2) - (rectHeight / 2), rectWidth, rectHeight);
+			GUILayout.BeginArea (rect, new GUIStyle ("box"));
+			GUILayout.Label (PhotonNetwork.room.name);
+			
+			GUILayout.BeginHorizontal ();
+			if (GUILayout.Button ("BACK TO GAME", GUILayout.Width (790))) {
+				showLobby = false;
+			}
+			GUILayout.EndHorizontal ();
+			
+			GUILayout.BeginHorizontal ();
+			if (GUILayout.Button ("BACK TO LOBBY", GUILayout.Width (790))) {
+				PhotonNetwork.LeaveRoom ();
+				standbyCamera.SetActive (true);
+				showLobby = true;
+				menuNumber = 0;
+			}
+			GUILayout.EndHorizontal ();
+			
+			GUILayout.EndArea ();
 		}
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.BeginHorizontal ();
-		if (GUILayout.Button ("BACK TO LOBBY", GUILayout.Width(790))) {
-			PhotonNetwork.LeaveRoom ();
-			standbyCamera.SetActive (true);
-			showLobby = true;
-			menuNumber = 0;
-		}
-		GUILayout.EndHorizontal ();
-		
-		GUILayout.EndArea ();
 	}
 }
