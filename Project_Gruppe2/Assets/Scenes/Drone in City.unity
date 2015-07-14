@@ -26739,7 +26739,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_Text
-      value: 10 sec
+      value: 120 sec
       objectReference: {fileID: 0}
     - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_FontData.m_Font
