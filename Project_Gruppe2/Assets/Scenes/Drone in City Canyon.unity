@@ -1190,6 +1190,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c01c7269fa5d4cb2b61a7061b99408c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  propRR: {fileID: 634504428}
+  propRL: {fileID: 982822925}
+  propFR: {fileID: 1950544605}
+  propFL: {fileID: 1945977095}
 --- !u!1 &1040062791
 GameObject:
   m_ObjectHideFlags: 0

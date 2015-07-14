@@ -3356,6 +3356,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c01c7269fa5d4cb2b61a7061b99408c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  propRR: {fileID: 1389854045}
+  propRL: {fileID: 265329142}
+  propFR: {fileID: 1092126073}
+  propFL: {fileID: 1363229846}
 --- !u!1001 &997608727
 Prefab:
   m_ObjectHideFlags: 0
