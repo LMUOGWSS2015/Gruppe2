@@ -23,7 +23,13 @@ public class Menu2 : MonoBehaviour {
 			Utils.isSinglePlayer = true;
 			break;
 		case 5: 
+			Utils.isSinglePlayer = true;
+			break;
+		case 6: 
 			Utils.isSinglePlayer = false;
+			break;
+		case 7: 
+			Utils.isSinglePlayer = true;
 			break;
 		default:
 			Debug.Log("This should not happen!");
