@@ -28,7 +28,8 @@ public class Menu2 : MonoBehaviour {
 		case 6: 
 			Utils.isSinglePlayer = true;
 			break;
-		case 7: 
+		case 7:
+			// MULTIPLAYER!
 			Utils.isSinglePlayer = false;
 			break;
 		default:
