@@ -18,10 +18,11 @@ public class GlobalScoreHUD : Photon.MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		TextMesh[] texts = GameObject.FindObjectsOfType<TextMesh> ();
-
-		for (int i=0; i<texts.Length; i++) {
-			texts [i].transform.LookAt (Camera.main.transform.position, Camera.main.transform.up);
+		if (PhotonNetwork.inRoom) {
+			TextMesh[] texts = GameObject.FindObjectsOfType<TextMesh> ();
+			for (int i=0; i<texts.Length; i++) {
+				texts [i].transform.LookAt (Camera.main.transform.position, Camera.main.transform.up);
+			}
 		}
 	}
 

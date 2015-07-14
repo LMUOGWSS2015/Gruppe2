@@ -1264,6 +1264,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c01c7269fa5d4cb2b61a7061b99408c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  propRR: {fileID: 10872616}
+  propRL: {fileID: 10810414}
+  propFR: {fileID: 10800872}
+  propFL: {fileID: 10852024}
 --- !u!114 &11427758
 MonoBehaviour:
   m_ObjectHideFlags: 1

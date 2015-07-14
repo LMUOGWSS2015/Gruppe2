@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LightControl : MonoBehaviour {
+public class LightControl : Photon.MonoBehaviour {
 
-	Light propRR;
-	Light propRL;
-	Light propFR;
-	Light propFL;
+	public Light propRR;
+	public Light propRL;
+	public Light propFR;
+	public Light propFL;
 	
 	
 	// Use this for initialization
 	void Start () {
-		propRR = gameObject.transform.FindChild ("PropRR").GetComponent<Light> ();
-		propRL = gameObject.transform.FindChild ("PropRL").GetComponent<Light> ();
-		propFR = gameObject.transform.FindChild ("PropFR").GetComponent<Light> ();
-		propFL = gameObject.transform.FindChild ("PropFL").GetComponent<Light> ();
-
+		Debug.Log ("LightControl () - Start");
+//		propRR = GameObject.Find("PropRR").GetComponent<Light> ();
+//		propRL = GameObject.Find("PropRL").GetComponent<Light> ();
+//		propFR = GameObject.Find("PropFR").GetComponent<Light> ();
+//		propFL = GameObject.Find("PropFL").GetComponent<Light> ();
+//
 		shootLight();
-		
 	}
 	
 	// Update is called once per frame
