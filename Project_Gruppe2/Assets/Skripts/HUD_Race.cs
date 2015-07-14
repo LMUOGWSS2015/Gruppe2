@@ -85,6 +85,7 @@ public class HUD_Race : MonoBehaviour
 
 	void OnGUI()
 	{
+		GUI.skin.font = (Font)Resources.Load ("ethnocentric_rg"); 
 		if (pauseGame) {
 			width = 400;
 			height = 200;

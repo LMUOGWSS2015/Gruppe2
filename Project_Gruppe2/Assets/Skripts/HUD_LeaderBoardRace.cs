@@ -20,6 +20,8 @@ public class HUD_LeaderBoardRace : MonoBehaviour {
 	
 	void OnGUI()
 	{
+		GUI.skin.font = (Font)Resources.Load ("ethnocentric_rg"); 
+
 		float width = 400;
 		float height = 300;
 		

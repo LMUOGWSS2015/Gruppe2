@@ -86,6 +86,7 @@ public class HUD : MonoBehaviour
 
 	void OnGUI()
 	{
+		GUI.skin.font = (Font)Resources.Load ("ethnocentric_rg"); 
 		if (pauseGame) {
 			GUILayout.BeginArea (r, new GUIStyle ("box"));
 			GUILayout.Label ("SHOOTER | PAUSE");

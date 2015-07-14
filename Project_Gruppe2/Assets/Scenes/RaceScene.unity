@@ -488,6 +488,18 @@ Prefab:
       value: 
       objectReference: {fileID: 12800000, guid: 3530918cfca024b7c8e39779f2714a5d,
         type: 3}
+    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19e93ed9da67140259d629d41c023992, type: 2}
   m_IsPrefabParent: 0
@@ -41499,6 +41511,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c01c7269fa5d4cb2b61a7061b99408c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  propRR: {fileID: 1389854045}
+  propRL: {fileID: 265329142}
+  propFR: {fileID: 1092126073}
+  propFL: {fileID: 1363229846}
 --- !u!1001 &997608727
 Prefab:
   m_ObjectHideFlags: 0
@@ -44852,6 +44868,18 @@ Prefab:
     - target: {fileID: 182232, guid: 19e93ed9da67140259d629d41c023992, type: 2}
       propertyPath: m_Name
       value: TimeText
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11465008, guid: 19e93ed9da67140259d629d41c023992, type: 2}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19e93ed9da67140259d629d41c023992, type: 2}
